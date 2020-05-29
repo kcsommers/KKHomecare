@@ -1,11 +1,14 @@
 import dotenv from 'dotenv';
-dotenv.config();
-// require('./database');
+import { Database } from './database';
 import express from 'express';
 import cors from 'cors';
 import bp from 'body-parser';
+
+dotenv.config();
+
 const port = process.env.PORT || 3000;
 const app = express();
+const db = new Database();
 
 app.use(cors());
 app.use(bp.json());
