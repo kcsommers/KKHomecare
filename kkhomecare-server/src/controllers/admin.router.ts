@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
-// const router = require('express').Router();
 import mongoose from 'mongoose';
-import { Admin } from '../models/admin.model';
+import { AdminModel } from '../database/models/admin.model';
+import { Admin } from '@kk/core';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { checkAuth } from '../middleware/check-auth';
-import { Request, Response, Router } from 'express';
+import { Request, Response, Router, NextFunction } from 'express';
 
 const router = Router();
 
@@ -17,7 +17,7 @@ router.get('', checkAuth, (req: Request, res: Response) => {
 
 router.post('/signup', (req: Request, res, next) => {
   const { email, username, password } = req.body;
-  Admin.find({ email })
+  AdminModel.find({ email })
     .exec()
     .then(user => {
       if (user.length) {
@@ -34,7 +34,7 @@ router.post('/signup', (req: Request, res, next) => {
                 error: hashError
               });
             } else {
-              const admin = new Admin({
+              const admin = new AdminModel({
                 _id: new mongoose.Types.ObjectId(),
                 email,
                 username,
@@ -50,10 +50,10 @@ router.post('/signup', (req: Request, res, next) => {
                   });
                 })
                 .catch((saveErr: Error) => {
-                  console.error(err);
+                  console.error(saveErr);
                   res.status(500).json({
                     success: false,
-                    error: err
+                    error: saveErr
                   });
                 })
             }
@@ -63,20 +63,18 @@ router.post('/signup', (req: Request, res, next) => {
     })
 });
 
-router.post('/login', (req: Request, res, next) => {
+router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body;
-  console.log(username, password)
-  Admin.find({ username })
+  AdminModel.find({ username })
     .exec()
-    .then(user => {
-      console.log('User', user)
-      if (!user.length) {
+    .then((adminArr: Admin[]) => {
+      if (!adminArr.length) {
         return res.status(401).json({
           success: false,
           error: new Error('Auth failed')
         })
       }
-      bcrypt.compare(password, user[0].password, (compareError, successful) => {
+      bcrypt.compare(password, adminArr[0].password, (compareError, successful) => {
         if (compareError) {
           return res.status(401).json({
             success: false,
@@ -86,8 +84,8 @@ router.post('/login', (req: Request, res, next) => {
         if (successful) {
           const token = jwt.sign(
             {
-              email: user[0].email,
-              userId: user[0]._id
+              email: adminArr[0].email,
+              userId: adminArr[0]._id
             },
             process.env.JWT_KEY,
             {
@@ -99,8 +97,8 @@ router.post('/login', (req: Request, res, next) => {
             error: null,
             data: {
               admin: {
-                email: user[0].email,
-                username: user[0].username,
+                email: adminArr[0].email,
+                username: adminArr[0].username,
                 token,
                 expiresAt: Date.now() + (60 * 60 * 1000)
               }
@@ -125,7 +123,7 @@ router.post('/login', (req: Request, res, next) => {
 
 router.delete('/', checkAuth, (req: Request, res: Response) => {
   const { username } = req.body;
-  Admin.deleteOne({ username }, (err) => {
+  AdminModel.deleteOne({ username }, (err) => {
     if (err) {
       return res.status(500).json({
         success: null,

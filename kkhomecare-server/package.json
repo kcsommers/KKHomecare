@@ -9,7 +9,7 @@
     "serve": "node dist/index.js",
     "watch-node": "nodemon dist/index.js",
     "watch-ts": "tsc -w",
-    "build-ts": "tsc"
+    "build-ts": "tsc -p ."
   },
   "author": "M Kacy Sommers",
   "license": "ISC",

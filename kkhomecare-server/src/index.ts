@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { Database } from './database';
+import { Database } from './database/database';
 import express from 'express';
 import cors from 'cors';
 import bp from 'body-parser';
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 // app.use('/photos', require('./controllers/photos.router'));
-// app.use('/admin', require('./controllers/admin.router'));
+app.use('/admin', require('./controllers/admin.router'));
 // app.use('/admin/invoices', require('./controllers/invoices.router'));
 // app.use('/admin/messages', require('./controllers/messages.router'));
 

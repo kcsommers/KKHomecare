@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { Admin } from '../models/admin.model;
+import { Admin } from '@kk/core';
 
 interface AuthRequest extends Request {
-  userData: Admin;
+  userData: string | object;
 }
 
 export const checkAuth = (req: AuthRequest, res: Response, next: NextFunction) => {
