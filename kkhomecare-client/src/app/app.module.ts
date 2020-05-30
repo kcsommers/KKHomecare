@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FaIconsComponent } from 'src/fa-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { jwtProvider, httpErrorProvider } from '@kk/core';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,10 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    jwtProvider,
+    httpErrorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
