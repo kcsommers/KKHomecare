@@ -5,20 +5,30 @@ import { AppComponent } from './app.component';
 import { FaIconsComponent } from 'src/fa-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { jwtProvider, httpErrorProvider } from '@kk/core';
+import { AppShellModule } from './app-shell/app-shell.module';
+import { AdminShellModule } from './app-shell/admin-shell/admin-shell.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppShellModule,
+    AdminShellModule,
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     jwtProvider,
     httpErrorProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

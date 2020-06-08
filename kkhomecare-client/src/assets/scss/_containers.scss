@@ -1,5 +1,11 @@
 @import './colors';
 
 $box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-$box-shadow-primary: 0 3px 6px rgba($primary, 0.4), 0 3px 6px rgba($primary, 0.45);
-$kk-min-height: calc(100vh - 340px);
+$box-shadow-dark: 0 3px 6px rgba($dark, 0.4), 0 3px 6px rgba($dark, 0.45);
+
+.kk-card {
+    border-radius: 3px;
+    box-shadow: $box-shadow;
+    background-color: #fff;
+    padding: 2rem;
+}

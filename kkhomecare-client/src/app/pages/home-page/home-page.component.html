@@ -1,0 +1,66 @@
+<section class="landing-section">
+    <div class="landing-wrap">
+        <h1 class="landing-title">2K Homecare</h1>
+        <p class="landing-tagline">
+            Cleaning, painting, landscaping and more!
+        </p>
+    </div>
+</section>
+<section class="services-section">
+    <div class="service-cards-wrap">
+        <a
+            class="service-card kk-card"
+            [routerLink]="'/'"
+        >
+            <fa-icon
+                [icon]="'broom'"
+                [size]="'3x'"
+            ></fa-icon>
+            <h4 class="service-card-title">Cleaning</h4>
+            <p class="service-card-blurb">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+        </a>
+        <a
+            class="service-card kk-card"
+            [routerLink]="'/'"
+        >
+            <fa-icon
+                [icon]="'paint-roller'"
+                [size]="'3x'"
+            ></fa-icon>
+            <h4 class="service-card-title">Painting</h4>
+            <p class="service-card-blurb">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+        </a>
+        <a
+            class="service-card kk-card"
+            [routerLink]="'/'"
+        >
+            <fa-icon
+                [icon]="'tree'"
+                [size]="'3x'"
+            ></fa-icon>
+            <h4 class="service-card-title">Landscaping</h4>
+            <p class="service-card-blurb">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+        </a>
+    </div>
+    <div class="what-we-do-wrap">
+        <div class="what-we-do-blurb-wrap">
+            <h2 class="what-we-do-title">What We Do</h2>
+            <p class="what-we-do-blurb">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+        <div class="services-menu-wrap">
+            <h4>
+                <fa-icon [icon]="'sun'"></fa-icon>
+                Our Services
+            </h4>
+            <kk-services-menu></kk-services-menu>
+        </div>
+    </div>
+</section>

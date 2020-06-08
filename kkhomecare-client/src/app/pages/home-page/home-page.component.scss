@@ -1,0 +1,82 @@
+@import '_variables';
+:host {
+    display: block;
+    background-color: $white;
+    padding-top: 120px;
+}
+section.landing-section {
+    padding: 2rem;
+}
+h1.landing-title,
+p.landing-tagline {
+    color: $white;
+}
+p.landing-tagline {
+    letter-spacing: 0.1rem;
+    font-size: 1.75rem;
+}
+div.landing-wrap {
+    background-image: url(../../../assets/images/decor/clean-kitchen-dark.jpg);
+    background-size: cover;
+    height: 400px;
+    padding: 4rem 3rem;
+}
+
+section.services-section {
+    background-color: $light;
+    padding: 4rem 2rem;
+}
+div.service-cards-wrap {
+    display: grid;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 2rem;
+    // grid-auto-rows: minmax(200px, auto);
+}
+a.service-card {
+    flex: 1;
+    text-align: center;
+    transition: all 0.75s ease;
+    >fa-icon {
+        color: $green;
+    }
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+h4.service-card-title {
+    margin: 1.5rem 0 1rem 0;
+}
+p.service-card-blurb {
+    line-height: 1.5rem;
+}
+div.what-we-do-wrap {
+    padding: 2rem;
+    background-color: #fff;
+    display: flex;
+}
+div.services-menu-wrap {
+    transform: translateX(4rem);
+    >h4 {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        color: $red;
+        >fa-icon {
+            color: inherit;
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+    }
+}
+div.what-we-do-blurb-wrap {
+    padding-right: 2rem;
+    flex: 1;
+}
+h2.what-we-do-title {
+    margin-bottom: 1.5rem;
+}
+p.what-we-do-blurb {
+    line-height: 1.75rem;
+}

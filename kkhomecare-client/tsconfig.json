@@ -23,8 +23,8 @@
         "./src/app/core/core-api.ts"
       ],
       "@kk/components": [
-        "projects/components/src/public-api.ts"
-      ]
+        "./src/app/components/components-api.ts"
+      ],
     }
   },
   "angularCompilerOptions": {

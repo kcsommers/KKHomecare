@@ -1,0 +1,33 @@
+@import '_variables';
+:host {
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: $box-shadow;
+    border-radius: 3px;
+    width: 400px;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+}
+div.services-nav-item {
+    display: flex;
+    align-items: center;
+}
+span.services-nav-icon-wrap {
+    font-size: 1.3rem;
+    width: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+a.services-nav-tag {
+    display: inline-block;
+    padding: 0.75rem 2rem 0.75rem 0.75rem;
+    flex: 1;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    margin-left: 0.5rem;
+    &:hover {
+        background-color: $blue;
+        box-shadow: $box-shadow;
+        color: $light;
+    }
+}
