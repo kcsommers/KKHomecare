@@ -1,0 +1,61 @@
+@import '_variables';
+:host {
+    display: block;
+    height: 190px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+div.testimonial-wrap {
+    height: 160px;
+    min-width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 4rem;
+}
+p.testimonial-content {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+div.testimonial-name-wrap {
+    text-align: right;
+    margin-right: 10%;
+}
+div.controls-wrap {
+    margin-top: 160px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+span.arrow-left,
+span.arrow-right {
+    padding: 0 0.5rem;
+    font-size: 1.75rem;
+    cursor: pointer;
+    display: inline-block;
+    transform: translateY(10%);
+}
+span.arrow-left {
+    margin-right: 1rem;
+}
+span.arrow-right {
+    margin-left: 1rem;
+}
+span.dot {
+    display: inline-block;
+    font-size: 2rem;
+    transition: all 0.2s ease;
+    margin: 0 0.25rem;
+    &.dot-active {
+        color: $red;
+        transform: scale(1.2);
+    }
+}

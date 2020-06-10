@@ -14,7 +14,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/admin/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule)
-      }
+      },
     ]
   },
   {
@@ -28,6 +28,26 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/home-page/home-page.module').then(m => m.HomePageModule)
+      },
+      {
+        path: 'about',
+        loadChildren: () => import('./pages/about-page/about-page.module').then(m => m.AboutPageModule)
+      },
+      {
+        path: 'services',
+        loadChildren: () => import('./pages/services-page/services-page.module').then(m => m.ServicesPageModule)
+      },
+      {
+        path: 'services/:id',
+        loadChildren: () => import('./pages/service-page/service-page.module').then(m => m.ServicePageModule)
+      },
+      {
+        path: 'photos',
+        loadChildren: () => import('./pages/photos-page/photos-page.module').then(m => m.PhotosPageModule)
+      },
+      {
+        path: 'contact',
+        loadChildren: () => import('./pages/contact-page/contact-page.module').then(m => m.ContactPageModule)
       }
     ]
   }

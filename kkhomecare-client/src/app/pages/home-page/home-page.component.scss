@@ -48,11 +48,8 @@ a.service-card {
 h4.service-card-title {
     margin: 1.5rem 0 1rem 0;
 }
-p.service-card-blurb {
-    line-height: 1.5rem;
-}
 div.what-we-do-wrap {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: #fff;
     display: flex;
 }
@@ -77,6 +74,40 @@ div.what-we-do-blurb-wrap {
 h2.what-we-do-title {
     margin-bottom: 1.5rem;
 }
-p.what-we-do-blurb {
-    line-height: 1.75rem;
+
+section.testimonials-section {
+    background-image: url(../../../assets/images/decor/bathtub-wallpaper.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    padding: 6rem;
+}
+div.testimonials-wrap {
+    background-color: #fff;
+    padding: 4rem 0;
+    border-radius: 3px;
+    text-align: center;
+    >button {
+        margin-top: 2rem;
+    }
+}
+h2.testimonials-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+section.contact-section {
+    display: flex;
+}
+div.contact-left {
+    flex: 0.6;
+    padding: 4rem;
+    >h2 {
+        margin-bottom: 1rem;
+    }
+}
+div.contact-right {
+    padding: 4rem;
+    flex: 1;
+    background-color: $pink;
 }

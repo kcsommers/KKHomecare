@@ -1,6 +1,47 @@
 @import 'variables';
 :host {
-    display: block;
-    height: 200px;
-    background-color: $dark;
+    display: flex;
+    height: 250px;
+    background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+    padding: 0 4rem;
+    >h4 {
+        margin-bottom: 0.5rem;
+    }
+}
+div.footer-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+div.footer-left-inner {
+    margin-left: 2rem;
+}
+div.footer-right {
+    align-self: center;
+}
+img.footer-logo {
+    width: 180px;
+}
+div.footer-contact-wrap {
+    display: flex;
+}
+p.footer-contact-info {
+    margin-right: 2rem;
+}
+p.copyright {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+div.footer-social-wrap {
+    text-align: right;
+    >p {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+}
+a.footer-social-tag {
+    &:not(:last-child) {
+        margin-right: 0.75rem;
+    }
 }

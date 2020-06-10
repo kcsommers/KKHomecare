@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './home-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ServicesMenuModule } from '@kk/components';
+import { ServicesMenuModule, TestimonialSliderModule, ContactFormModule } from '@kk/components';
 
 
 @NgModule({
@@ -13,7 +13,9 @@ import { ServicesMenuModule } from '@kk/components';
     CommonModule,
     HomePageRoutingModule,
     FontAwesomeModule,
-    ServicesMenuModule
+    ServicesMenuModule,
+    TestimonialSliderModule,
+    ContactFormModule
   ],
   exports: [HomePageComponent]
 })

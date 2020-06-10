@@ -1,0 +1,35 @@
+<ng-container #ViewContainer></ng-container>
+<div class="controls-wrap">
+    <span
+        class="arrow-left"
+        (click)="prev()"
+    >
+        <fa-icon [icon]="'angle-left'"></fa-icon>
+    </span>
+    <span
+        *ngFor="let t of testimonials; let i = index"
+        class="dot"
+        [class.dot-active]="i === currentIndex"
+    >
+        &bull;
+    </span>
+    <span
+        class="arrow-right"
+        (click)="next()"
+    >
+        <fa-icon [icon]="'angle-right'"></fa-icon>
+    </span>
+</div>
+<ng-template
+    #Template
+    let-t="t"
+>
+    <div class="testimonial-wrap">
+        <p class="testimonial-content">
+            <em>&quot;{{t.content}}&quot;</em>
+        </p>
+        <div class="testimonial-name-wrap">
+            <strong>-{{t.name}}</strong>
+        </div>
+    </div>
+</ng-template>

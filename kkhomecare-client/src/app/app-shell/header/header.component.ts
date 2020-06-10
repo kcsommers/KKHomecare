@@ -1,4 +1,8 @@
-import { Component, ChangeDetectionStrategy, HostListener, HostBinding } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostListener, HostBinding, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'kk-header',
@@ -6,11 +10,30 @@ import { Component, ChangeDetectionStrategy, HostListener, HostBinding } from '@
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
 
   public scrolled = false;
 
-  constructor() { }
+  private _unsubscribe = new Subject();
+
+  public currentUrl = '';
+
+  constructor(private _router: Router) {
+    this.setCurrentUrl(this._router.url);
+    this._router.events
+      .pipe(
+        takeUntil(this._unsubscribe),
+        filter(ev => ev instanceof NavigationStart)
+      )
+      .subscribe((navStart: NavigationStart) => {
+        this.setCurrentUrl(navStart.url)
+      });
+  }
+
+  private setCurrentUrl(url: string): void {
+    const match = url.match(/\/[a-z]*/i);
+    this.currentUrl = match ? match[0] : '';
+  }
 
   @HostBinding('class.scrolled')
   get isScrolled(): boolean {
@@ -26,6 +49,11 @@ export class HeaderComponent {
     } else {
       this.scrolled = false;
     }
+  }
+
+  public ngOnDestroy() {
+    this._unsubscribe.next(false);
+    this._unsubscribe.complete();
   }
 
 }

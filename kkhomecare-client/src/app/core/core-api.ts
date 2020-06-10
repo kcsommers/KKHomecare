@@ -12,3 +12,5 @@ export { PhotosService } from './photos/photos.service';
 
 export * from './contact/contact';
 export { ContactService } from './contact/contact.service';
+
+export { testimonials } from './kk-services/kk-services';

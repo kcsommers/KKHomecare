@@ -2,6 +2,7 @@
 @import 'reset';
 @import 'variables';
 @import 'button';
+@import 'animations';
 
 * {
     box-sizing: border-box;
@@ -66,6 +67,10 @@ h4 {
     font-weight: 600;
 }
 
+p {
+    line-height: 1.75rem;
+}
+
 em {
     font-style: italic;
     color: inherit;
@@ -78,9 +83,11 @@ strong {
 
 input[type=text],
 input[type=email],
+input[type=phone],
 textarea {
     border: none;
-    background-color: $light;
+    border-radius: 3px;
+    background-color: $white;
     color: $dark;
     display: block;
     width: 100%;
@@ -89,6 +96,9 @@ textarea {
     resize: none;
     &:focus {
         box-shadow: $box-shadow;
+    }
+    &:not(:last-child) {
+        margin-bottom: 1rem;
     }
 }
 

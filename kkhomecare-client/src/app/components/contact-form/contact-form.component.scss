@@ -1,0 +1,9 @@
+:host {
+    display: block;
+}
+label {
+    color: #fff;
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
