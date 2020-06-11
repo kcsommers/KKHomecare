@@ -1,0 +1,40 @@
+@import 'variables';
+:host {
+    display: block;
+    padding: calc(120px + 2rem) 0rem 2rem 0rem;
+    width: 100%;
+    img {
+        width: 100%;
+    }
+}
+h2.about-page-title {
+    padding: 0 2rem;
+}
+section.about-intro-section {
+    padding: 2rem;
+    display: flex;
+}
+p.about-intro {
+    padding-right: 4rem;
+    flex: 1;
+}
+div.about-intro-img-wrap {
+    flex: 0.75;
+}
+section.team-section {
+    padding: 2rem;
+}
+div.team-member-wrap {
+    display: flex;
+    margin-bottom: 4rem;
+}
+div.team-member-img-wrap {
+    flex: 0.65;
+}
+div.team-member-info-wrap {
+    flex: 1;
+    padding: 0 2rem;
+    >h2 {
+        margin-bottom: 1rem;
+    }
+}

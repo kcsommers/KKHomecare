@@ -26,7 +26,7 @@ export class HeaderComponent implements OnDestroy {
         filter(ev => ev instanceof NavigationStart)
       )
       .subscribe((navStart: NavigationStart) => {
-        this.setCurrentUrl(navStart.url)
+        this.setCurrentUrl(navStart.url);
       });
   }
 

@@ -55,7 +55,7 @@ span.dot {
     transition: all 0.2s ease;
     margin: 0 0.25rem;
     &.dot-active {
-        color: $red;
+        color: $pink;
         transform: scale(1.2);
     }
 }

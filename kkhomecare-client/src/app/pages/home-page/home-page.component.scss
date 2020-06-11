@@ -41,7 +41,7 @@ a.service-card {
     >fa-icon {
         color: $green;
     }
-    &:hover {
+    &.active {
         transform: scale(1.1);
     }
 }
@@ -59,7 +59,7 @@ div.services-menu-wrap {
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
-        color: $red;
+        color: $pink;
         >fa-icon {
             color: inherit;
             margin-right: 0.5rem;
@@ -109,5 +109,5 @@ div.contact-left {
 div.contact-right {
     padding: 4rem;
     flex: 1;
-    background-color: $pink;
+    background-color: $light-pink;
 }

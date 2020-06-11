@@ -10,7 +10,10 @@
     <div class="service-cards-wrap">
         <a
             class="service-card kk-card"
+            [class.active]="activeServiceCard === 'cleaning'"
             [routerLink]="'/'"
+            (mouseover)="activeServiceCard = 'cleaning'"
+            (mouseout)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'broom'"
@@ -23,7 +26,9 @@
         </a>
         <a
             class="service-card kk-card"
+            [class.active]="activeServiceCard === 'painting'"
             [routerLink]="'/'"
+            (mouseover)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'paint-roller'"
@@ -36,7 +41,10 @@
         </a>
         <a
             class="service-card kk-card"
+            [class.active]="activeServiceCard === 'landscaping'"
             [routerLink]="'/'"
+            (mouseover)="activeServiceCard = 'landscaping'"
+            (mouseout)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'tree'"
