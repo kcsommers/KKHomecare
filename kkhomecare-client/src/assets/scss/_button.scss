@@ -46,6 +46,12 @@ a.kk-btn-outline {
     }
 }
 
+button.kk-btn-pink,
+a.kk-btn-pink {
+    background-color: $pink;
+    color: #fff;
+}
+
  button.kk-btn-full-width,
  a.kk-btn-full-width {
     width: 100%;
@@ -56,6 +62,14 @@ button:focus,
 a.kk-btn:hover,
 a.kk-btn:focus {
     background-color: $light-blue;
+    box-shadow: $box-shadow;
+}
+
+button.kk-btn-pink:hover,
+button.kk-btn-pink:focus,
+a.kk-btn.kk-btn-pink:hover,
+a.kk-btn.kk-btn-pink:focus {
+    background-color: lighten($pink, 5%);
     box-shadow: $box-shadow;
 }
 

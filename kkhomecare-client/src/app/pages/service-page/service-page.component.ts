@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { services, Service } from '@kk/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'kk-service-page',
@@ -6,11 +9,38 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./service-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ServicePageComponent implements OnInit {
+export class ServicePageComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  public service: Service;
+
+  private _params$: Subscription;
+
+  @ViewChild('ViewContainer', { static: true, read: ViewContainerRef })
+  private _viewContainer: ViewContainerRef;
+
+  @ViewChild('Template', { static: true, read: TemplateRef })
+  private _template: TemplateRef<any>;
+
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scrollTo({ top: 0 });
+    this._params$ = this._route.params.subscribe(params => {
+      const service = services.find(s => s.name === params.id);
+      if (service) {
+        this._viewContainer.clear();
+        this.service = service;
+        this.attachView();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this._params$.unsubscribe();
+  }
+
+  private attachView() {
+    this._viewContainer.createEmbeddedView(this._template, { service: this.service });
   }
 
 }

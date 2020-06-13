@@ -1,0 +1,14 @@
+<img
+    #Image
+    [attr.src]="image?.url"
+    [attr.alt]="image?.tag + ' photo'"
+    [class.image-loading]="!(loaded$ | async)"
+    [@fadeIn]="loaded$ | async"
+    (load)="onLoad()"
+>
+<div
+    *ngIf="!(loaded$ | async)"
+    class="image-placeholder"
+>
+    <kk-loading-spinner></kk-loading-spinner>
+</div>

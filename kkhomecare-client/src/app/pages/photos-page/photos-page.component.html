@@ -1,1 +1,13 @@
-<p>photos-page works!</p>
+<section class="photos-intro-section">
+    <h2>Our Work</h2>
+</section>
+<section class="photos-section">
+    <span class="toggle-wrap kk-card">
+        <strong>Before & After</strong>
+        <kk-toggle></kk-toggle>
+    </span>
+    <div class="photos-wrap">
+        <ng-container #PhotosContainer></ng-container>
+        <button (click)="loadImages()">Load More</button>
+    </div>
+</section>

@@ -53,4 +53,20 @@ div.header-contact-wrap {
 h4.header-phone-number {
     letter-spacing: 0.35rem;
 }
-
+div.social-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: lighten($pink, 20%);
+    padding: 0.5rem 3rem;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    >a {
+      margin: 0 0.5rem;
+      >fa-icon {
+          color: #fff;
+          font-size: 1.5rem;
+      }
+    }
+}

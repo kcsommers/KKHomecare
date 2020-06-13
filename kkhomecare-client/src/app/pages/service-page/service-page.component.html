@@ -1,1 +1,35 @@
-<p>service-page works!</p>
+<section class="service-section">
+    <ng-container #ViewContainer></ng-container>
+    <img
+        class="service-page-img"
+        src="assets/images/decor/shop-vac-light.jpg"
+        alt="Shop Vac"
+    >
+</section>
+<ng-template
+    #Template
+    let-service="service"
+>
+    <div
+        *ngIf="service"
+        class="service-page-left fade-in"
+    >
+        <h2 class="service-title">{{service?.name.toUpperCase()}}</h2>
+        <p class="service-description">{{service?.description}}</p>
+        <ul
+            *ngIf="service"
+            class="service-bullets-list"
+        >
+            <li *ngFor="let bullet of service.bullets">{{bullet}}</li>
+        </ul>
+        <button class="kk-btn kk-btn-full-width">Get a Quote</button>
+    </div>
+    <div class="service-page-right">
+        <div class="service-img-wrap fade-in">
+            <img src="assets/images/work/deck.jpg">
+        </div>
+        <div class="service-list-wrap">
+            <kk-services-menu></kk-services-menu>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,43 @@
+@import 'variables';
+:host {
+    display: block;
+    padding-top: 120px;
+}
+section.service-section {
+    display: flex;
+    padding: 4rem 2rem;
+    position: relative;
+}
+img.service-page-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30%;
+    min-width: 400px;
+    opacity: 0.5;
+    z-index: 400;
+}
+div.service-page-left,
+div.service-page-right {
+    position: relative;
+    z-index: 401;
+}
+div.service-page-left {
+    flex: 1;
+    padding-right: 3rem;
+}
+p.service-description {
+    margin: 1rem 0;
+}
+div.service-page-right {
+    flex: 0.5;
+}
+div.service-img-wrap {
+    >img {
+        width: 100%;
+    }
+}
+div.service-list-wrap {
+    padding: 0 1rem;
+    transform: translateY(-30%);
+}

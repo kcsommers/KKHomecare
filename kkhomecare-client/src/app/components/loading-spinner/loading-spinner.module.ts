@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     FontAwesomeModule,
     CommonModule
-  ]
+  ],
+  exports: [LoadingSpinnerComponent]
 })
 export class LoadingSpinnerModule { }

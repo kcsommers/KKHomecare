@@ -1,0 +1,31 @@
+@import 'variables';
+:host {
+    display: flex;
+    padding-top: 120px;
+    min-height: 100%;
+}
+div.contact-page-left {
+    background-image: url(../../../assets/images/decor/potting-light.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+div.contact-page-left,
+div.contact-page-right {
+    flex: 1;
+    padding: 4rem 2rem;
+}
+div.contact-info-wrap {
+    border: 4px solid $dark;
+    padding: 2rem;
+    margin-top: 1rem;
+    background-color: rgba(#fff, 0.9);
+}
+div.contact-info {
+    &:first-child {
+        margin-bottom: 1.5rem;
+    }
+    >p>strong.name {
+        font-size: 1.3rem;
+    }
+}

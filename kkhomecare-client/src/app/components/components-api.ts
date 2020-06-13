@@ -1,3 +1,9 @@
+export { ImageComponent } from './image/image.component';
+export { ImageModule } from './image/image.module';
+
+export { ToggleComponent } from './toggle/toggle.component';
+export { ToggleModule } from './toggle/toggle.module';
+
 export { ContactFormComponent } from './contact-form/contact-form.component';
 export { ContactFormModule } from './contact-form/contact-form.module';
 

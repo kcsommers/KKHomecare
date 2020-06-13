@@ -1,0 +1,51 @@
+@import '_variables';
+:host {
+    display: inline-block;
+    background-color: $gray;
+    width: 20px;
+    height: 20px;
+    transform: translateX(10px);
+    overflow: visible;
+    white-space: nowrap;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    &.toggled {
+        background-color: lighten($blue, 5%);
+        .toggle-track-left,
+        .toggle-track-right {
+            background-color: lighten($blue, 5%);
+        }
+        .toggle-dot {
+            transform: translateX(9px);
+        }
+    }
+}
+.toggle-track-left,
+.toggle-track-right {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: $gray;
+    position: absolute;
+    top: 0;
+    transition: background-color 0.2s ease;
+}
+.toggle-track-left {
+    left: -10px;
+}
+.toggle-track-right {
+    right: -10px;
+}
+.toggle-dot {
+    position: absolute;
+    border-radius: 100%;
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    left: 2px;
+    transform: translateX(-9px);
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
