@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PhotosPageRoutingModule } from './photos-page-routing.module';
 import { PhotosPageComponent } from './photos-page.component';
-import { ToggleModule, ImageModule } from '@kk/components';
+import { ToggleModule, ImageModule, LoadingSpinnerModule } from '@kk/components';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { ToggleModule, ImageModule } from '@kk/components';
     CommonModule,
     PhotosPageRoutingModule,
     ToggleModule,
-    ImageModule
+    ImageModule,
+    LoadingSpinnerModule
   ],
   exports: [PhotosPageComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, ComponentFactoryResolver, ChangeDetectorRef } from '@angular/core';
 import { PhotosService, PhotosResponse, ImageModel } from '@kk/core';
 import { take } from 'rxjs/operators';
 import { ImageComponent } from '@kk/components';
@@ -11,15 +11,20 @@ import { ImageComponent } from '@kk/components';
 })
 export class PhotosPageComponent implements OnInit {
 
-  private _offset = 0;
+  private _imgStore: ImageModel[] = [];
+
+  public isLoading = true;
+
+  public hasError = false;
 
   @ViewChild('PhotosContainer', { static: true, read: ViewContainerRef })
   private _photosContainer: ViewContainerRef;
 
-  @ViewChild('ErrorTemplate', { static: false, read: TemplateRef })
-  private _errorTemplate: TemplateRef<any>;
-
-  constructor(private _photosService: PhotosService, private _cfr: ComponentFactoryResolver) {
+  constructor(
+    private _photosService: PhotosService,
+    private _cfr: ComponentFactoryResolver,
+    private _cd: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
@@ -34,16 +39,30 @@ export class PhotosPageComponent implements OnInit {
   }
 
   public loadImages(): void {
-    this._photosService.getPhotos(this._offset)
+    const lastId = this._imgStore[this._imgStore.length - 1] && this._imgStore[this._imgStore.length - 1]._id;
+    this._photosService.getPhotos(lastId)
       .pipe(take(1))
       .subscribe(
         (res: PhotosResponse) => {
+          this.isLoading = false;
           if (res && res.images) {
-            this._offset += res.images.length;
+            if (!this._imgStore.length && !res.images.length) {
+              this.hasError = true;
+              return;
+            }
+            this._imgStore.push(...res.images);
             res.images.forEach(img => this.createImageComponent(img));
+            this._cd.markForCheck();
           }
         },
-        err => console.error(err)
+        err => {
+          this.isLoading = false;
+          if (!this._imgStore.length) {
+            this.hasError = true;
+            this._cd.markForCheck();
+          }
+          console.error(err);
+        }
       );
   }
 

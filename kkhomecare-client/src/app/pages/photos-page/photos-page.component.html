@@ -6,8 +6,31 @@
         <strong>Before & After</strong>
         <kk-toggle></kk-toggle>
     </span>
-    <div class="photos-wrap">
+    <div
+        class="photos-wrap"
+        [class.photos-grid]="!isLoading && !hasError"
+    >
         <ng-container #PhotosContainer></ng-container>
-        <button (click)="loadImages()">Load More</button>
+        <div class="load-more-btn-wrap">
+            <button
+                *ngIf="!isLoading && !hasError"
+                class="kk-btn-circle"
+                (click)="loadImages()"
+            >
+                Load More
+            </button>
+        </div>
+        <div
+            *ngIf="!hasError && isLoading"
+            class="loading-wrap"
+        >
+            <kk-loading-spinner></kk-loading-spinner>
+        </div>
+        <div
+            *ngIf="hasError"
+            class="error-wrap"
+        >
+            <h4>There was an error fetching photos</h4>
+        </div>
     </div>
 </section>

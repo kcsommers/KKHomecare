@@ -12,8 +12,6 @@
             class="service-card kk-card"
             [class.active]="activeServiceCard === 'cleaning'"
             [routerLink]="'/'"
-            (mouseover)="activeServiceCard = 'cleaning'"
-            (mouseout)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'broom'"
@@ -28,7 +26,6 @@
             class="service-card kk-card"
             [class.active]="activeServiceCard === 'painting'"
             [routerLink]="'/'"
-            (mouseover)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'paint-roller'"
@@ -43,8 +40,6 @@
             class="service-card kk-card"
             [class.active]="activeServiceCard === 'landscaping'"
             [routerLink]="'/'"
-            (mouseover)="activeServiceCard = 'landscaping'"
-            (mouseout)="activeServiceCard = 'painting'"
         >
             <fa-icon
                 [icon]="'tree'"

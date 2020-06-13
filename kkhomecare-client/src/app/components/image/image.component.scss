@@ -1,6 +1,18 @@
+@import 'variables';
 :host {
     display: inline-block;
+    position: relative;
     >img {
         width: 100%;
     }
+}
+div.img-placeholder {
+    background-color: $light;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

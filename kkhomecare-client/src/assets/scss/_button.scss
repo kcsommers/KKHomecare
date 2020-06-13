@@ -52,10 +52,21 @@ a.kk-btn-pink {
     color: #fff;
 }
 
- button.kk-btn-full-width,
- a.kk-btn-full-width {
-    width: 100%;
- }
+button.kk-btn-full-width,
+a.kk-btn-full-width {
+    width: 100%
+}
+
+button.kk-btn-circle,
+a.kk-btn-circle {
+    padding: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 button:hover,
 button:focus,

@@ -8,8 +8,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  public activeServiceCard = 'painting';
-
   constructor() { }
 
   ngOnInit() {
