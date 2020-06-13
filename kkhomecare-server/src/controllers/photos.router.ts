@@ -16,6 +16,19 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
+router.get('', (req: Request, res: Response) => {
+  const lastId = req.query && req.query.lastId;
+  const query = lastId ? { _id: { $gt: lastId } } : {};
+  ImageModel
+    .find(query)
+    .limit(8)
+    .exec()
+    .then(images => {
+      res.status(200).json({ images });
+    })
+    .catch(error => res.status(500).json({ error }));
+});
+
 const getBeforeAfter = (fetchAll: boolean, getTotal: boolean, offset: number) => {
   return new Promise((resolve, reject) => {
     if (fetchAll) {
