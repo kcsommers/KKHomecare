@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, HostListener, HostBinding, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ModalService } from '@kk/components';
 
 
 @Component({
@@ -14,15 +15,15 @@ export class HeaderComponent implements OnDestroy {
 
   public scrolled = false;
 
-  private _unsubscribe = new Subject();
+  private _unsubscribe$ = new Subject();
 
   public currentUrl = '';
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _modalService: ModalService) {
     this.setCurrentUrl(this._router.url);
     this._router.events
       .pipe(
-        takeUntil(this._unsubscribe),
+        takeUntil(this._unsubscribe$),
         filter(ev => ev instanceof NavigationStart)
       )
       .subscribe((navStart: NavigationStart) => {
@@ -52,8 +53,12 @@ export class HeaderComponent implements OnDestroy {
   }
 
   public ngOnDestroy() {
-    this._unsubscribe.next(false);
-    this._unsubscribe.complete();
+    this._unsubscribe$.next(false);
+    this._unsubscribe$.complete();
+  }
+
+  public openModal(): void {
+    this._modalService.open();
   }
 
 }
