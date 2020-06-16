@@ -19,6 +19,10 @@ export class PhotosService {
     return this.http.get<PhotosResponse>(`${environment.apiUrl}/photos${query}`);
   }
 
+  public getBeforeAfter(): Observable<BeforeAfterResponse> {
+    return this.http.get<BeforeAfterResponse>(`${environment.apiUrl}/photos/before-after`);
+  }
+
   public upload(imageFiles: FileList, tag: Services): Observable<HttpResponse> {
     const formData = new FormData();
     for (let i = 0; i < imageFiles.length; i++) {

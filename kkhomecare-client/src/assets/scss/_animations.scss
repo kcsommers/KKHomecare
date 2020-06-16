@@ -25,6 +25,20 @@
     }
 }
 
+.slide-in-down {
+    animation: slideInDown 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes slideInDown {
+    0% {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+}
+
 .slide-in-left {
     animation: slideInLeft 1s ease forwards;
 }

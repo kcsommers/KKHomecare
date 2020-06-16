@@ -16,7 +16,8 @@ import {
   faImages,
   faFileInvoiceDollar,
   faTrash,
-  faEye
+  faEye,
+  faPhone
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -53,7 +54,8 @@ export class FaIconsComponent {
       faImages,
       faFileInvoiceDollar,
       faTrash,
-      faEye
+      faEye,
+      faPhone
     );
   }
 }

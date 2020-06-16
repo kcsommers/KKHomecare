@@ -1,9 +1,9 @@
 :host {
     display: block;
-    padding: 120px 2rem 4rem 2rem;
+    padding: 150px 2rem 4rem 2rem;
 }
 section.photos-intro-section {
-    height: 400px;
+    height: 450px;
     text-align: center;
     background-image: url(../../../assets/images/decor/roller-dark.jpg);
     background-attachment: fixed;
@@ -48,6 +48,10 @@ div.photos-wrap {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));;
         grid-auto-rows: minmax(200px, auto);
     }
+    &.before-after-grid {
+        grid-template-columns: repeat(2, 1fr);;
+        grid-auto-rows: minmax(200px, auto);
+    }
 }
 div.loading-wrap {
     text-align: center;
@@ -57,3 +61,4 @@ div.load-more-btn-wrap {
     align-items: center;
     justify-content: center;
 }
+

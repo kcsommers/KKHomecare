@@ -22,6 +22,8 @@ export class ImageComponent {
 
   public loaded$ = new BehaviorSubject(false);
 
+  public shouldBlur = false;
+
   @Input()
   public set image(img: ImageModel) {
     this.loaded$.next(false);
@@ -34,6 +36,12 @@ export class ImageComponent {
 
   @HostBinding('class.slide-in')
   public slideIn = true;
+
+  @HostBinding('class.blurred')
+  get blur(): boolean {
+    return this.shouldBlur;
+  }
+
 
   constructor() { }
 

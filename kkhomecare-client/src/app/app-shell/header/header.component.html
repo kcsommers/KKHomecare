@@ -42,20 +42,26 @@
     >
         <img
             class="header-logo"
-            src="assets/images/logos/2k-logo-black.png"
+            src="assets/images/logos/2k-logo-color-2.png"
             alt="2K Homecare Logo"
         >
     </a>
-    <div class="header-contact-wrap">
-        <h4 class="header-phone-number">(330) 819-2651</h4>
-        <button class="kk-btn-sm">Get A Quote</button>
+    <div class="social-wrap slide-in-left">
+        <a href="/">
+            <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+        </a>
+        <a href="/">
+            <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+        </a>
     </div>
 </div>
-<div class="social-wrap">
-    <a href="/">
-        <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
-    </a>
-    <a href="/">
-        <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
-    </a>
+<div class="header-contact-wrap slide-in-down">
+    <div class="header-contact-inner">
+        <h4 class="header-phone-number">
+            <fa-icon [icon]="'phone'"></fa-icon>
+            (330) 819-2651
+        </h4>
+        <button class="kk-btn-sm">Get A Quote</button>
+    </div>
+
 </div>

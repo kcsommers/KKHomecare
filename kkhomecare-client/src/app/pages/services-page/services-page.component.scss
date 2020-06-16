@@ -1,10 +1,10 @@
 @import 'variables';
 :host {
     display: block;
-    padding: 120px 2rem 4rem 2rem;
+    padding: 150px 2rem 4rem 2rem;
 }
 section.services-intro-section {
-    height: 400px;
+    height: 450px;
     text-align: center;
     background-image: url(../../../assets/images/decor/bg6.jpg);
     background-attachment: fixed;
@@ -22,7 +22,7 @@ section.services-intro-section {
         margin-bottom: 1rem;
     }
     >p {
-        padding: 0 4rem;
+        padding: 0 6rem;
     }
 }
 a.service-card {

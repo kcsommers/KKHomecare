@@ -1,19 +1,22 @@
-<section class="photos-intro-section">
+<section class="photos-intro-section fade-in">
     <h2>Our Work</h2>
 </section>
 <section class="photos-section">
     <span class="toggle-wrap kk-card">
         <strong>Before & After</strong>
-        <kk-toggle></kk-toggle>
+        <kk-toggle (isToggledChange)="toggleBeforeAfter($event)"></kk-toggle>
     </span>
     <div
         class="photos-wrap"
         [class.photos-grid]="!isLoading && !hasError"
+        [class.before-after-grid]="showBeforeAfter"
     >
         <ng-container #PhotosContainer></ng-container>
-        <div class="load-more-btn-wrap">
+        <div
+            *ngIf="!isLoading && !hasError && !showBeforeAfter"
+            class="load-more-btn-wrap"
+        >
             <button
-                *ngIf="!isLoading && !hasError"
                 class="kk-btn-circle"
                 (click)="loadImages()"
             >

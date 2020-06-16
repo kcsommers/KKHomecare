@@ -1,7 +1,7 @@
 @import 'variables';
 :host {
     display: block;
-    padding-top: 120px;
+    padding-top: 150px;
 }
 section.service-section {
     display: flex;
@@ -24,7 +24,7 @@ div.service-page-right {
 }
 div.service-page-left {
     flex: 1;
-    padding-right: 3rem;
+    padding-right: 6rem;
 }
 p.service-description {
     margin: 1rem 0;

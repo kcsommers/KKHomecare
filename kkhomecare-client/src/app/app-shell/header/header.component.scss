@@ -1,7 +1,7 @@
 @import 'variables';
 :host {
-    height: 120px;
-    background-color: $white;
+    height: 150px;
+    background-color: #fff;
     position: fixed;
     top: 0;
     left: 0;
@@ -34,39 +34,69 @@ div.header-sides-wrap {
 a.nav-link {
     padding: 0.75rem;
     margin: 0 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    border-bottom: 4px solid rgba(#000, 0);
+    transition: all 0.2s ease;
+    &:hover:not(.nav-link-active) {
+        opacity: 0.9;
+    }
 }
 a.nav-link-active {
     border-bottom: 4px solid $light-blue;
+    opacity: 1;
 }
 a.header-logo-tag {
     height: 100%;
 }
 img.header-logo {
-    height: 100%;
-}
-div.header-contact-wrap {
-    text-align: right;
-    >button {
-        margin-top: 0.5rem;
-    }
-}
-h4.header-phone-number {
-    letter-spacing: 0.35rem;
+    height: 90%;
 }
 div.social-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    >a {
+      margin: 0.5rem 0;
+      color: $dark-blue;
+      transition: color 0.2s ease;
+      >fa-icon {
+          font-size: 1.75rem;
+          color: inherit;
+      }
+      &:hover {
+          color: $blue;
+      }
+    }
+}
+div.header-contact-wrap {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: lighten($pink, 20%);
-    padding: 0.5rem 3rem;
+    background-color: $dark-blue;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    >a {
-      margin: 0 0.5rem;
-      >fa-icon {
-          color: #fff;
-          font-size: 1.5rem;
-      }
+    padding: 0.5rem 1rem;
+    z-index: 801;
+
+}
+div.header-contact-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $light;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background-color: $light;
+    >h4 {
+        cursor: pointer;
+        letter-spacing: 0.25rem;
+    }
+    >button {
+        margin-top: 0px;
+        margin-left: 2rem;
     }
 }

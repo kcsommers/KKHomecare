@@ -2,8 +2,12 @@
 :host {
     display: inline-block;
     position: relative;
+    transition: filter 0.3s ease;
     >img {
         width: 100%;
+    }
+    &.blurred {
+        filter: blur(5px);
     }
 }
 div.img-placeholder {

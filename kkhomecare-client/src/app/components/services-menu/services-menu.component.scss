@@ -17,6 +17,9 @@ span.services-nav-icon-wrap {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    >fa-icon {
+        color: $blue;
+    }
 }
 a.services-nav-tag {
     display: inline-block;
@@ -26,7 +29,7 @@ a.services-nav-tag {
     border-top-left-radius: 3px;
     margin-left: 0.5rem;
     &:hover {
-        background-color: $pink;
+        background-color: $dark-blue;
         box-shadow: $box-shadow;
         color: $light;
     }

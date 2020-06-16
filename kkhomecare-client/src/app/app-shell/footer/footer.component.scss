@@ -16,6 +16,10 @@ div.footer-left {
 }
 div.footer-left-inner {
     margin-left: 2rem;
+    >h4 {
+        margin-bottom: 0.5rem;
+        color: $dark-blue;
+    }
 }
 div.footer-right {
     align-self: center;
@@ -38,6 +42,16 @@ div.footer-social-wrap {
     >p {
         font-size: 1.3rem;
         margin-bottom: 0.5rem;
+    }
+    >a {
+        color: $dark-blue;
+        transition: color 0.2s ease;
+        >fa-icon {
+            color: inherit;
+        }
+        &:hover {
+            color: $blue;
+        }
     }
 }
 a.footer-social-tag {
