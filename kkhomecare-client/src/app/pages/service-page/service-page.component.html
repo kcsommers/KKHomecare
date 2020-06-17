@@ -8,21 +8,23 @@
 </section>
 <ng-template
     #Template
-    let-service="service"
+    let-this="this"
 >
     <div
-        *ngIf="service"
+        *ngIf="this.service"
         class="service-page-left fade-in"
     >
-        <h2 class="service-title">{{service?.name.toUpperCase()}}</h2>
-        <p class="service-description">{{service?.description}}</p>
-        <ul
-            *ngIf="service"
-            class="service-bullets-list"
-        >
+        <h2 class="service-title">{{this.service.name.toUpperCase()}}</h2>
+        <p class="service-description">{{this.service.description}}</p>
+        <ul class="service-bullets-list">
             <li *ngFor="let bullet of service.bullets">{{bullet}}</li>
         </ul>
-        <button class="kk-btn kk-btn-full-width">Get a Quote</button>
+        <button
+            class="kk-btn kk-btn-full-width"
+            (click)="this.openModal()"
+        >
+            Get a Quote
+        </button>
     </div>
     <div class="service-page-right">
         <div class="service-img-wrap fade-in">
@@ -33,3 +35,4 @@
         </div>
     </div>
 </ng-template>
+<kk-modal></kk-modal>

@@ -8,7 +8,6 @@ const messageSchema = new mongoose.Schema({
     phone: Number
   },
   message: String,
-  jobType: String,
   seen: Boolean,
   date: Date
 });

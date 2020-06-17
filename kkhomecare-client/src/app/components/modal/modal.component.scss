@@ -1,6 +1,7 @@
 @import '_variables';
 :host {
-    display: none;
+    display: flex;
+    visibility: hidden;
     opacity: 0;
     justify-content: center;
     align-items: center;
@@ -11,9 +12,23 @@
     width: 100%;
     background-color: rgba($dark, 0.8);
     z-index: 1000;
-    transition: opacity 0.5s ease;
+    transition: all 0.5s ease;
     &.visible {
-        display: flex;
+        visibility: visible;
         opacity: 1;
+    }
+}
+div.content-wrap {
+    background-color: $light;
+    border-radius: 3px;
+    padding: 2rem;
+    overflow: auto;
+    height: 80vh;
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    >kk-contact-form {
+        margin: auto;
+        flex: 1;
     }
 }

@@ -9,10 +9,26 @@
 }
 h2.about-page-title {
     padding: 0 2rem;
+    color: #fff;
 }
 section.about-intro-section {
     padding: 2rem;
     display: flex;
+    position: relative;
+    >img {
+        position: absolute;
+        top: -70px;
+        left: 0;
+        width: 250px;
+        z-index: 400;
+        transform: scaleX(1.3);
+        opacity: 0.85;
+    }
+}
+h2.about-page-title,
+p.about-intro {
+    position: relative;
+    z-index: 401;
 }
 p.about-intro {
     padding-right: 4rem;
@@ -21,12 +37,15 @@ p.about-intro {
 div.about-intro-img-wrap {
     flex: 0.75;
 }
-section.team-section {
-    padding: 2rem;
-}
 div.team-member-wrap {
     display: flex;
-    margin-bottom: 4rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    &:first-child {
+        background-color: #fff;
+        margin-top: 2rem;
+        padding: 4rem 2rem;
+    }
 }
 div.team-member-img-wrap {
     flex: 0.65;

@@ -1,4 +1,3 @@
-export { ModalService } from './modal/modal.service';
 export { ModalComponent } from './modal/modal.component';
 export { ModalModule } from './modal/modal.module';
 

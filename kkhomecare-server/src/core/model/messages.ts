@@ -7,7 +7,6 @@ export interface Message extends Document {
     phone: Number
   },
   message: String,
-  jobType: String,
   seen: Boolean,
   date: Date
 }

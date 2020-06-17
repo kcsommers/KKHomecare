@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { services, Service } from '@kk/core';
+import { services, Service, ModalService, ModalTemplates } from '@kk/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class ServicePageComponent implements OnInit, OnDestroy {
   @ViewChild('Template', { static: true, read: TemplateRef })
   private _template: TemplateRef<any>;
 
-  constructor(private _route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute, private _modalService: ModalService) { }
 
   ngOnInit() {
     window.scrollTo({ top: 0 });
@@ -41,6 +41,10 @@ export class ServicePageComponent implements OnInit, OnDestroy {
 
   private attachView() {
     this._viewContainer.createEmbeddedView(this._template, { service: this.service });
+  }
+
+  public openModal(): void {
+    this._modalService.open(ModalTemplates.CONTACT);
   }
 
 }

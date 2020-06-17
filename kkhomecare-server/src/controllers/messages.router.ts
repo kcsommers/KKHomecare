@@ -1,5 +1,13 @@
+import dotenv from 'dotenv';
 import { Request, Response, Router } from "express";
 import { MessageModel } from '../database/models/message.model';
+import Mailgun from 'mailgun-js';
+
+dotenv.config();
+const mg = Mailgun({
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN
+});
 
 const router = Router();
 
@@ -25,19 +33,36 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.post('/', (req: Request, res: Response) => {
-  const { name, email, message, phone, jobType } = req.body;
-  MessageModel.create({
-    client: { name, email, phone },
-    message,
-    jobType,
-    date: new Date(),
-    seen: false
-  }, (error: Error, result: any) => {
-    if (error) {
-      res.sendStatus(500).json({ success: null, error });
-    } else {
-      res.json({ success: true, error: null });
+  const { name, email, message, phone } = req.body;
+  const emailData: Mailgun.messages.SendData = {
+    to: process.env.EMAIL_ADDRESS,
+    from: `${name} <${email}>`,
+    subject: `New Message from ${name}`,
+    text: message
+  };
+  mg.messages().send(emailData, (err: Mailgun.Error, body: Mailgun.messages.SendResponse) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: err });
     }
+    const replyData: Mailgun.messages.SendData = {
+      to: email,
+      from: `2K Homecare <${process.env.EMAIL_ADDRESS}>`,
+      subject: 'Thank you!',
+      text: 'Thank you for getting in touch! We will get back to you shortly.'
+    };
+    mg.messages().send(replyData);
+    MessageModel.create({
+      client: { name, email, phone },
+      message,
+      date: new Date(),
+      seen: false
+    })
+      .then(result => {
+        res.status(200).json({ success: true, error: null });
+      })
+      .catch(err => {
+        res.status(500).json({ success: false, error: err });
+      })
   })
 });
 

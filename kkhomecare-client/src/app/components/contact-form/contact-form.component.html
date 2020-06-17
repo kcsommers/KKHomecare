@@ -1,22 +1,97 @@
-<label for="name">Name</label>
-<input
-    id="name"
-    type="text"
+<ng-container *ngIf="!submitted && !submitError">
+    <h3
+        *ngIf="title"
+        class="form-title"
+    >
+        {{title}}
+    </h3>
+    <label for="name_{{guid}}">
+        Name
+        <span
+            *ngIf="nameError"
+            class="error-msg"
+        >
+            *Required
+        </span>
+    </label>
+    <input
+        id="name_{{guid}}"
+        type="text"
+        [(ngModel)]="name"
+    >
+    <label for="email_{{guid}}">
+        Email
+        <span
+            *ngIf="emailError"
+            class="error-msg"
+        >
+            *Required
+        </span>
+    </label>
+    <input
+        id="email_{{guid}}"
+        type="email"
+        [(ngModel)]="email"
+    >
+    <label for="phone_{{guid}}">
+        Phone
+        <span
+            *ngIf="phoneError"
+            class="error-msg"
+        >
+            *Required
+        </span>
+    </label>
+    <input
+        id="phone_{{guid}}"
+        type="phone"
+        [(ngModel)]="phone"
+    >
+    <label for="message_{{guid}}">
+        Message
+        <span
+            *ngIf="messageError"
+            class="error-msg"
+        >
+            *Required
+        </span>
+    </label>
+    <textarea
+        id="message_{{guid}}"
+        name="message"
+        rows="10"
+        [(ngModel)]="message"
+    ></textarea>
+    <button
+        class="kk-btn kk-btn-full-width"
+        (click)="submit()"
+    >
+        Submit Message
+    </button>
+</ng-container>
+<div
+    *ngIf="submitted"
+    class="success-wrap slide-in-up"
 >
-<label for="email">Email</label>
-<input
-    id="email"
-    type="email"
+    <fa-icon
+        [icon]="'check-circle'"
+        [size]="'2x'"
+    ></fa-icon>
+    <h3>Thank You!</h3>
+    <p>
+        Your message has been sent. We will get back to you as soon as possible
+    </p>
+</div>
+<div
+    *ngIf="submitError"
+    class="error-wrap slide-in-up"
 >
-<label for="phone">Phone</label>
-<input
-    id="phone"
-    type="phone"
->
-<label for="message">Message</label>
-<textarea
-    id="message"
-    name="message"
-    rows="10"
-></textarea>
-<button class="kk-btn kk-btn-full-width">Submit Message</button>
+    <fa-icon
+        [icon]="'exclamation-circle'"
+        [size]="'2x'"
+    ></fa-icon>
+    <h3>Uh Oh!</h3>
+    <p>
+        There was a problem sending your message. Please try again later.
+    </p>
+</div>

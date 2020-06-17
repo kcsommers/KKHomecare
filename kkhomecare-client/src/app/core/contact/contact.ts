@@ -1,9 +1,6 @@
-import { JobTypes } from '../kk-services/kk-services';
-
 export interface FormSubmission {
   name: string;
   email: string;
-  phone: number;
+  phone: string;
   message: string;
-  jobType: JobTypes;
 }

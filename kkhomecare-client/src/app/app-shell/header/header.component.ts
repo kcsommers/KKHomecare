@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, HostListener, HostBinding, OnDestro
 import { Router, NavigationStart } from '@angular/router';
 import { takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ModalService } from '@kk/components';
+import { ModalService, ModalTemplates } from '@kk/core';
 
 
 @Component({
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnDestroy {
   }
 
   public openModal(): void {
-    this._modalService.open();
+    this._modalService.open(ModalTemplates.CONTACT);
   }
 
 }
