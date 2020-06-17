@@ -44,13 +44,13 @@ router.post('/', (req: Request, res: Response) => {
     if (err) {
       return res.status(500).json({ success: false, error: err });
     }
-    const replyData: Mailgun.messages.SendData = {
-      to: email,
-      from: `2K Homecare <${process.env.EMAIL_ADDRESS}>`,
-      subject: 'Thank you!',
-      text: 'Thank you for getting in touch! We will get back to you shortly.'
-    };
-    mg.messages().send(replyData);
+    // const replyData: Mailgun.messages.SendData = {
+    //   to: email,
+    //   from: `2K Homecare <${process.env.EMAIL_ADDRESS}>`,
+    //   subject: 'Thank you!',
+    //   text: 'Thanks for getting in touch! We will get back to you shortly.'
+    // };
+    // mg.messages().send(replyData);
     MessageModel.create({
       client: { name, email, phone },
       message,
