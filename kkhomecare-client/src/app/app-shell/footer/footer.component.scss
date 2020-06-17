@@ -18,7 +18,7 @@ div.footer-left-inner {
     margin-left: 2rem;
     >h4 {
         margin-bottom: 0.5rem;
-        color: $dark-blue;
+        color: $lightest-blue;
     }
 }
 div.footer-right {
@@ -44,7 +44,7 @@ div.footer-social-wrap {
         margin-bottom: 0.5rem;
     }
     >a {
-        color: $dark-blue;
+        color: $lightest-blue;
         transition: color 0.2s ease;
         >fa-icon {
             color: inherit;

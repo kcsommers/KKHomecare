@@ -1,1 +1,29 @@
-<p>login-page works!</p>
+<div class="admin-page-wrap">
+    <h3>Admin Login</h3>
+    <p
+        *ngIf="getLoginMessage() as msg"
+        class="login-error-msg"
+    >
+        {{msg}}
+    </p>
+    <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Username"
+        [(ngModel)]="username"
+    >
+    <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+    >
+    <button
+        class="kk-btn kk-btn-full-width"
+        (click)="login()"
+    >
+        Login
+    </button>
+</div>

@@ -39,7 +39,7 @@ a.service-card {
     text-align: center;
     transition: all 0.75s ease;
     >fa-icon {
-        color: $dark-blue;
+        color: $lightest-blue;
     }
     &:hover {
         transform: scale(1.1);
@@ -59,7 +59,7 @@ div.services-menu-wrap {
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
-        color: $dark-blue;
+        color: $lightest-blue;
         >fa-icon {
             color: inherit;
             margin-right: 0.5rem;

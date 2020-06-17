@@ -1,7 +1,11 @@
+import { AuthenticationService } from './auth/authentication.service';
+
 export * from './utils';
 
 export { jwtProvider } from './auth/jwt-interceptor';
 export { AuthGuard } from './auth/auth-guard';
+export { AuthenticationService } from './auth/authentication.service';
+export * from './auth/auth';
 
 export { httpErrorProvider } from './http/error-interceptor';
 

@@ -60,7 +60,7 @@ div.social-wrap {
     align-items: center;
     >a {
       margin: 0.5rem 0;
-      color: $dark-blue;
+      color: $lightest-blue;
       transition: color 0.2s ease;
       >fa-icon {
           font-size: 1.75rem;
@@ -76,7 +76,7 @@ div.header-contact-wrap {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: $dark-blue;
+    background-color: $lightest-blue;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     padding: 0.5rem 1rem;

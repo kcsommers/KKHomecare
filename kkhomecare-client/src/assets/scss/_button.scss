@@ -61,9 +61,9 @@ a.kk-btn-outline {
     }
 }
 
-button.kk-btn-dark,
-a.kk-btn-dark {
-    background-color: $dark-blue;
+button.kk-btn-light,
+a.kk-btn-light {
+    background-color: $lightest-blue;
     color: #fff;
 }
 
@@ -94,11 +94,11 @@ a.kk-btn:focus {
     }
 }
 
-button.kk-btn-dark:hover,
-button.kk-btn-dark:focus,
-a.kk-btn.kk-btn-dark:hover,
-a.kk-btn.kk-btn-dark:focus {
-    background-color: lighten($dark-blue, 5%);
+button.kk-btn-light:hover,
+button.kk-btn-light:focus,
+a.kk-btn.kk-btn-light:hover,
+a.kk-btn.kk-btn-light:focus {
+    background-color: lighten($lightest-blue, 5%);
     box-shadow: $box-shadow;
 }
 
