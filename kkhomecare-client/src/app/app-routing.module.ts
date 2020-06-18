@@ -15,6 +15,18 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./pages/admin/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule)
       },
+      {
+        path: 'invoices',
+        loadChildren: () => import('./pages/admin/invoices-dashboard/invoices-dashboard.module').then(m => m.InvoicesDashboardModule)
+      },
+      {
+        path: 'invoices/:id',
+        loadChildren: () => import('./pages/admin/invoice-page/invoice-page.module').then(m => m.InvoicePageModule)
+      },
+      {
+        path: 'messages',
+        loadChildren: () => import('./pages/admin/messages-page/messages-page.module').then(m => m.MessagesPageModule)
+      }
     ]
   },
   {

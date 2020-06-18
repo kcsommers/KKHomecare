@@ -1,0 +1,57 @@
+@import '_variables';
+:host {
+    display: grid;
+    padding: 4rem 2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+}
+.kk-card {
+    padding: 0;
+}
+h3.admin-card-header {
+    background-color: $light-blue;
+    color: #fff;
+    padding: 1rem;
+}
+a.admin-card-body,
+span.admin-card-body {
+    display: block;
+    padding: 1rem;
+    position: relative;
+    height: 300px;
+    cursor: pointer;
+    &:hover {
+        >span.admin-card-icon-wrap>fa-icon {
+            color: $lightest-blue;
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    }
+}
+span.admin-card-icon-wrap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    fa-icon {
+        opacity: 0.3;
+        font-size: 6rem;
+        transition: all 0.5s ease;
+    }
+}
+button.upload-btn,
+p.admin-card-text {
+    position: relative;
+    z-index: 201;
+}
+p.admin-card-text {
+    font-size: 2rem;
+    padding: 1rem;
+}

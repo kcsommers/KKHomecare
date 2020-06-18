@@ -1,7 +1,7 @@
 <div class="admin-page-wrap">
     <h3>Admin Login</h3>
     <p
-        *ngIf="getLoginMessage() as msg"
+        *ngIf="getErrorMessage() as msg"
         class="login-error-msg"
     >
         {{msg}}

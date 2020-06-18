@@ -1,1 +1,12 @@
-<p>admin-shell works!</p>
+<header class="admin-header">
+    <h4>Hello, {{admin?.username}}</h4>
+    <button
+        class="kk-btn kk-btn-light"
+        (click)="logout()"
+    >
+        Logout
+    </button>
+</header>
+<main class="main-container">
+    <router-outlet></router-outlet>
+</main>

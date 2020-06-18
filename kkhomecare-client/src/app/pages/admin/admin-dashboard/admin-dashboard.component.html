@@ -1,1 +1,33 @@
-<p>admin-dashboard works!</p>
+<div class="kk-card">
+    <h3 class="admin-card-header">Invoices</h3>
+    <a
+        class="admin-card-body"
+        [routerLink]="'invoices'"
+    >
+        <span class="admin-card-icon-wrap">
+            <fa-icon [icon]="'dollar-sign'"></fa-icon>
+        </span>
+        <p class="admin-card-text">4 Unpaid</p>
+    </a>
+</div>
+<div class="kk-card">
+    <h3 class="admin-card-header">Messages</h3>
+    <a
+        class="admin-card-body"
+        [routerLink]="'messages'"
+    >
+        <span class="admin-card-icon-wrap">
+            <fa-icon [icon]="'envelope'"></fa-icon>
+        </span>
+        <p class="admin-card-text">5 New</p>
+    </a>
+</div>
+<div class="kk-card">
+    <h3 class="admin-card-header">Photo Uploader</h3>
+    <span class="admin-card-body">
+        <span class="admin-card-icon-wrap">
+            <fa-icon [icon]="'images'"></fa-icon>
+        </span>
+        <button class="upload-btn">Upload</button>
+    </span>
+</div>

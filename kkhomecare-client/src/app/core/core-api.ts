@@ -23,3 +23,6 @@ export * from './modal/modal';
 export { ModalService } from './modal/modal.service';
 
 export * from './http/api';
+
+export { AdminService } from './admin/admin.service';
+export * from './admin/admin';

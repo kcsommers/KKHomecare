@@ -37,7 +37,6 @@ export class LoginPageComponent {
         .pipe(take(1))
         .subscribe(
           (res: LoginResult) => {
-            console.log('RES::::: ', res);
             if (res.error) {
               this._authService.loginError('Incorrect username or password');
               return;
