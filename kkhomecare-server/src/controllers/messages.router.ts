@@ -12,24 +12,31 @@ const mg = Mailgun({
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
+  const lastId = req.query && req.query.lastId;
+  const query = lastId ? { _id: { $gt: lastId } } : {};
+  console.log('HIT MESSAGES::::: ', query)
+  MessageModel
+    .find(query)
+    .limit(10)
+    .exec()
+    .then(messages => {
+      res.status(200).json({ success: true, messages })
+    })
+    .catch(error => {
+      res.status(500).json({ success: false, error });
+    });
+});
+
+router.get('/new', (req: Request, res: Response) => {
   MessageModel
     .countDocuments()
     .exec()
     .then(total => {
-      MessageModel
-        .find()
-        .exec()
-        .then(messages => {
-          res.status(200).json({ success: true, data: { messages, total } })
-        })
-        .catch(error => {
-          res.status(500).json({ success: false, error });
-        });
+      res.status(200).json({ success: true, totalNew: total });
     })
     .catch(err => {
       res.status(500).json({ success: false, error: err });
     });
-
 });
 
 router.post('/', (req: Request, res: Response) => {

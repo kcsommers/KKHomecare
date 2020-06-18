@@ -5,7 +5,7 @@ const messageSchema = new mongoose.Schema({
   client: {
     name: String,
     email: String,
-    phone: Number
+    phone: String
   },
   message: String,
   seen: Boolean,
