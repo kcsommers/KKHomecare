@@ -24,8 +24,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/admin/invoice-page/invoice-page.module').then(m => m.InvoicePageModule)
       },
       {
-        path: 'messages',
-        loadChildren: () => import('./pages/admin/messages-page/messages-page.module').then(m => m.MessagesPageModule)
+        path: 'photo-upload',
+        loadChildren: () => import('./pages/admin/photo-upload-page/photo-upload-page.module').then(m => m.PhotoUploadPageModule)
       }
     ]
   },

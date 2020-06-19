@@ -18,7 +18,10 @@ import {
   faTrash,
   faEye,
   faPhone,
-  faExclamationCircle
+  faExclamationCircle,
+  faEdit,
+  faReply,
+  faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -57,7 +60,10 @@ export class FaIconsComponent {
       faTrash,
       faEye,
       faPhone,
-      faExclamationCircle
+      faExclamationCircle,
+      faEdit,
+      faReply,
+      faEyeSlash
     );
   }
 }

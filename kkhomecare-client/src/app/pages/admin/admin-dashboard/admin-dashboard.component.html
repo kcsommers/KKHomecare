@@ -11,23 +11,20 @@
     </a>
 </div>
 <div class="kk-card">
-    <h3 class="admin-card-header">Messages</h3>
+    <h3 class="admin-card-header">Photo Uploader</h3>
     <a
         class="admin-card-body"
-        [routerLink]="'messages'"
+        [routerLink]="'photo-upload'"
     >
-        <span class="admin-card-icon-wrap">
-            <fa-icon [icon]="'envelope'"></fa-icon>
-        </span>
-        <p class="admin-card-text">5 New</p>
-    </a>
-</div>
-<div class="kk-card">
-    <h3 class="admin-card-header">Photo Uploader</h3>
-    <span class="admin-card-body">
         <span class="admin-card-icon-wrap">
             <fa-icon [icon]="'images'"></fa-icon>
         </span>
-        <button class="upload-btn">Upload</button>
-    </span>
+        <a
+            class="kk-btn upload-btn"
+            [routerLink]="'photo-upload'"
+        >
+            Upload
+            <fa-icon [icon]="'angle-right'"></fa-icon>
+        </a>
+    </a>
 </div>
