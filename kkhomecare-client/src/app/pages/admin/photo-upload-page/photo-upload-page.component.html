@@ -1,1 +1,137 @@
-<p>photo-upload-page works!</p>
+<h2>Upload Photos</h2>
+<div class="image-uploader-wrap">
+    <div class="file-input-wrap">
+        <input
+            type="file"
+            accept="image/png, image/jpeg, image/jpg"
+            multiple="true"
+            (change)="imageFilesSelected($event)"
+            (dragenter)="dragEnter($event)"
+            (dragleave)="dragLeave($event)"
+            (drop)="dragLeave($event)"
+        >
+        <h4>Drag and drop or click to select images</h4>
+    </div>
+    <div class="file-list-wrap">
+        <div
+            *ngIf="imgUploading$ | async"
+            class="loading-spinner-wrap"
+        >
+            <kk-loading-spinner></kk-loading-spinner>
+        </div>
+
+        <div
+            *ngIf="imgUploadError$ | async"
+            class="error-msg-wrap"
+        >
+            <fa-icon
+                [icon]="'exclamation-circle'"
+                [size]="'2x'"
+            ></fa-icon>
+            <h4>
+                Image upload Error. Please try again later.
+            </h4>
+        </div>
+
+        <div
+            *ngIf="imgUploadSuccess$ | async"
+            class="success-msg-wrap"
+        >
+            <fa-icon
+                [icon]="'check-circle'"
+                [size]="'2x'"
+            ></fa-icon>
+            <h4>Images Uploaded Successfully!</h4>
+        </div>
+
+        <ng-container *ngIf="!(imgUploading$ | async) && !(imgUploadSuccess$ | async) && !(imgUploadError$ | async)">
+            <h5 *ngFor="let name of imageFileNames">{{name}}</h5>
+            <button
+                *ngIf="imageFileNames && imageFileNames.length"
+                (click)="uploadImages()"
+            >
+                Upload
+            </button>
+        </ng-container>
+
+    </div>
+</div>
+
+<h2 class="before-after-title">Upload Before & After Photos</h2>
+<h4>Before:</h4>
+<div class="image-uploader-wrap">
+    <div class="file-input-wrap">
+        <input
+            type="file"
+            accept="image/png, image/jpeg, image/jpg"
+            multiple="false"
+            (change)="beforeFileSelected($event)"
+            (dragenter)="dragEnter($event)"
+            (dragleave)="dragLeave($event)"
+            (drop)="dragLeave($event)"
+        >
+        <h4>Drag and drop or click to select images</h4>
+    </div>
+    <div class="file-list-wrap">
+        <div
+            *ngIf="beforeAfterUploading$ | async"
+            class="loading-spinner-wrap"
+        >
+            <kk-loading-spinner></kk-loading-spinner>
+        </div>
+
+        <div
+            *ngIf="beforeAfterUploadError$ | async"
+            class="error-msg-wrap"
+        >
+            <fa-icon
+                [icon]="'exclamation-circle'"
+                [size]="'2x'"
+            ></fa-icon>
+            <h4>
+                Image upload Error. Please try again later.
+            </h4>
+        </div>
+
+        <div
+            *ngIf="beforeAfterUploadSuccess$ | async"
+            class="success-msg-wrap"
+        >
+            <fa-icon
+                [icon]="'check-circle'"
+                [size]="'2x'"
+            ></fa-icon>
+            <h4>Images Uploaded Successfully!</h4>
+        </div>
+
+        <ng-container *ngIf="!(beforeAfterUploading$ | async) && !(beforeAfterUploadSuccess$ | async) && !(beforeAfterUploadError | async)">
+            <ng-container *ngIf="beforeFileName">
+                <p>Before Image:</p>
+                <h5>{{beforeFileName}}</h5>
+            </ng-container>
+            <ng-container *ngIf="afterFileName">
+                <p>After Image:</p>
+                <h5>{{afterFileName}}</h5>
+            </ng-container>
+            <button
+                *ngIf="beforeFileName && afterFileName"
+                (click)="uploadBeforeAfter()"
+            >
+                Upload
+            </button>
+        </ng-container>
+    </div>
+</div>
+<h4>After:</h4>
+<div class="file-input-wrap">
+    <input
+        type="file"
+        accept="image/png, image/jpeg, image/jpg"
+        multiple="false"
+        (change)="afterFileSelected($event)"
+        (dragenter)="dragEnter($event)"
+        (dragleave)="dragLeave($event)"
+        (drop)="dragLeave($event)"
+    >
+    <h4>Drag and drop or click to select images</h4>
+</div>

@@ -21,7 +21,9 @@ import {
   faExclamationCircle,
   faEdit,
   faReply,
-  faEyeSlash
+  faEyeSlash,
+  faTimes,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -63,7 +65,9 @@ export class FaIconsComponent {
       faExclamationCircle,
       faEdit,
       faReply,
-      faEyeSlash
+      faEyeSlash,
+      faTimes,
+      faPlus
     );
   }
 }

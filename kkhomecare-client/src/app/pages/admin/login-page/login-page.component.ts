@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { take, filter } from 'rxjs/operators';
 import { AuthenticationService, LoginResult } from '@kk/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'kk-login-page',
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnDestroy {
 
   public username = '';
 
@@ -17,12 +18,24 @@ export class LoginPageComponent {
 
   public loginError = false;
 
+  private mousedown$: Subscription;
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _authService: AuthenticationService,
     private _cd: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.mousedown$ = fromEvent(window, 'keyup')
+      .pipe(filter((ev: KeyboardEvent) => ev.keyCode === 13))
+      .subscribe(_ => {
+        this.login();
+      });
+  }
+
+  ngOnDestroy() {
+    this.mousedown$.unsubscribe();
+  }
 
   public getErrorMessage(): string {
     return localStorage.getItem(AuthenticationService.LOGIN_ERROR_KEY);

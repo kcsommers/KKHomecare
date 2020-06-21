@@ -1,0 +1,74 @@
+@import '_variables';
+:host {
+    display: block;
+    padding: 4rem 2rem;
+    >h2 {
+        margin-bottom: 1rem;
+    }
+}
+h2.before-after-title {
+    margin-top: 3rem;
+}
+div.file-input-wrap {
+    border: 3px dotted $dark;
+    position: relative;
+    width: 50%;
+    min-width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    transition: all 0.2s ease;
+    &:hover>h4 {
+        color: $light-blue;
+    }
+    >h4 {
+        color: $blue;
+        transition: color 0.2s ease;
+    }
+    &.dragged-over {
+        border: 5px dotted $light-blue;
+    }
+}
+input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+div.image-uploader-wrap {
+    display: flex;
+}
+div.file-list-wrap {
+    padding-left: 2rem;
+    flex: 1;
+    >h5 {
+        margin-bottom: 0.75rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+div.loading-spinner-wrap,
+div.error-msg-wrap,
+div.success-msg-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    >h4 {
+        margin-top: 0.75rem;
+    }
+}
+div.error-msg-wrap>fa-icon {
+    color: $red;
+}
+div.success-msg-wrap>fa-icon {
+    color: $blue;
+}

@@ -1,18 +1,29 @@
-export interface MessageModel {
-  client: {
-    username: string;
-    email: string;
-    phone: string;
-  };
-  message: string;
-  seen: boolean;
-  date: string;
-  _id: string;
+export interface ClientModel {
+  username: string;
+  email: string;
+  phone: string;
+  _id?: string;
 }
 
-export interface MessagesResponse {
-  success: boolean;
+export interface InvoiceItem {
+  name: string,
+  total: number,
+  itemId: number,
+  description: string
+}
+
+export interface InvoiceModel {
+  client: ClientModel;
+  items: InvoiceItem[];
+  total: number;
+  paid: boolean;
+  dueDate: number;
+  dateSent: number;
+  datePaid: number;
+  _id?: string;
+}
+
+export interface InvoicesResponse {
   error: Error;
-  messages: MessageModel[];
-  totalNew: number;
+  invoices: InvoiceModel[];
 }

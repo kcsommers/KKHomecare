@@ -1,0 +1,64 @@
+@import '_variables';
+:host {
+    display: block;
+    padding: 2rem;
+}
+header {
+    display: flex;
+    align-items: center;
+    button {
+        margin-top: 0;
+    }
+}
+span.search-wrap {
+    flex: 1;
+    margin-right: 1rem;
+}
+div.load-more-wrap,
+div.loading-spinner-wrap {
+    text-align: center;
+    padding: 2rem 0;
+}
+h4.error-msg {
+    margin-top: 2rem;
+}
+div.invoice-cards-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-auto-rows: auto;
+    padding: 2rem 0;
+}
+a.invoice-card {
+    position: relative;
+    text-align: center;
+    border: 5px solid rgba(0,0,0,0);
+    transition: all 0.2s ease;
+    &:hover {
+        border-color: $light;
+        >div.icon-wrap {
+            opacity: 0.9;
+        }
+    }
+    &.past-due {
+        border-color: $red;
+        &:hover {
+            border-color: lighten($red, 10%);
+        }
+    }
+    &.paid {
+        border-color: $blue;
+        &:hover {
+            border-color: lighten($blue, 10%);
+        }
+    }
+}
+div.icon-wrap {
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+}

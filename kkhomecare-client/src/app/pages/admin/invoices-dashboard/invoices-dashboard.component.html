@@ -1,1 +1,64 @@
-<p>invoices-dashboard works!</p>
+<header>
+    <span class="search-wrap">
+        <input
+            #Searchbar
+            type="text"
+            placeholder="Search clients..."
+            (input)="searchInputChanged($event)"
+        >
+    </span>
+    <button>
+        New Invoice
+        <fa-icon [icon]="'plus'"></fa-icon>
+    </button>
+</header>
+<div class="filter-select-wrap">
+    <mat-form-field>
+        <mat-label>Filter By</mat-label>
+        <mat-select (valueChange)="filterChanged($event)">
+            <mat-option
+                *ngFor="let filter of filters"
+                [value]="filter.value"
+            >
+                {{filter.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<h4
+    *ngIf="(fetchError$ | async) && !(loading$ | async)"
+    class="error-msg"
+>
+    {{fetchError$ | async}}
+</h4>
+<ng-container *ngIf="!(fetchError$ | async)">
+    <div class="invoice-cards-wrap">
+        <a
+            *ngFor="let invoice of displayedInvoices"
+            class="invoice-card kk-card"
+            [routerLink]="invoice._id"
+            [class.paid]="invoice.paid"
+            [class.past-due]="!invoice.paid && isPastDue(invoice.dueDate)"
+        >
+            <div class="icon-wrap">
+                <fa-icon
+                    [icon]="'file-invoice-dollar'"
+                    [size]="'4x'"
+                ></fa-icon>
+            </div>
+            <h5 class="client-name">{{invoice.client.name}}</h5>
+        </a>
+    </div>
+    <div
+        *ngIf="!(loading$ | async)"
+        class="load-more-wrap"
+    >
+        <button (click)="loadInvoices()">Load More</button>
+    </div>
+</ng-container>
+<div
+    *ngIf="loading$ | async"
+    class="loading-spinner-wrap"
+>
+    <kk-loading-spinner></kk-loading-spinner>
+</div>
