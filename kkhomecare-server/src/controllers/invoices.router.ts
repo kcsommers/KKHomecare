@@ -5,43 +5,13 @@ import { Invoice } from '@kk/core';
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
-  const { lastId, q, filter } = req.query;
-
-  let redirect = '';
-  if (q) {
-    redirect += `?q=${q}`;
-  }
-  if (filter) {
-    redirect += (redirect ? '&' : '?') + `filter=${filter}`;
-  }
-  if (redirect) {
-    return res.redirect(`invoices/search${redirect}`);
-  }
-
-  const handleResponse = (total: number, error: Error, invoices: Invoice[]) => {
-    if (error) {
-      return res.status(500).json({ error, success: false });
-    }
-    res.status(200).json({ success: true, error: null, data: { invoices, total } })
-  };
-
-  const fetch = () => {
-    return (lastId && lastId !== 'undefined') ?
-      InvoiceModel.find({ _id: { $gt: lastId } }) :
-      InvoiceModel.find();
-  };
-
+  const { lastId } = req.query;
+  const query = lastId ? { _id: { $gt: lastId } } : {};
   InvoiceModel
-    .countDocuments()
+    .find(query)
     .exec()
-    .then(total => {
-      fetch()
-        .limit(10)
-        .exec(handleResponse.bind(this, total))
-    })
-    .catch(error => {
-      res.status(500).json({ error, success: false });
-    });
+    .then(invoices => res.status(200).json({ invoices }))
+    .catch(error => res.json(500).json({ error }))
 });
 
 router.get('/search', (req: Request, res: Response) => {
@@ -64,10 +34,10 @@ router.get('/search', (req: Request, res: Response) => {
   InvoiceModel.find(Object.assign(nameSearch, dbFilter))
     .exec()
     .then(invoices => {
-      res.status(200).json({ success: true, data: { invoices } })
+      res.status(200).json({ invoices })
     })
     .catch(error => {
-      res.status(500).json({ error, success: false });
+      res.status(500).json({ error });
     })
 });
 
