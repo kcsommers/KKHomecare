@@ -133,7 +133,7 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
         },
         err => {
           this.fetchError$.next('Error fetching invoices');
-          this.loading$.next(false)
+          this.loading$.next(false);
           console.error(err);
         }
       );

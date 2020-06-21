@@ -59,15 +59,14 @@ router.post('/create', (req: Request, res: Response) => {
     total,
     items,
     dueDate,
-    sent: false,
     paid: false,
     datePaid: null,
-    dateSent: null
-  }, (error: Error, result: any) => {
+    dateSent: Date.now()
+  }, (error: Error, invoice: Invoice) => {
     if (error) {
-      return res.status(500).json({ success: false, error });
+      return res.status(500).json({ error });
     }
-    return res.status(200).json({ success: true, error: null, data: { invoices: [result] } });
+    return res.status(200).json({ invoices: [invoice] });
   });
 });
 

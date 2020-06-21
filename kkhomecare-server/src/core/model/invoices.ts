@@ -3,8 +3,7 @@ import { Client } from './clients';
 
 export interface InvoiceItem {
   name: string,
-  totalNum: number,
-  totalString: string,
+  total: number,
   itemId: number,
   description: string
 }
@@ -12,7 +11,7 @@ export interface InvoiceItem {
 export interface Invoice extends Document {
   client: Client,
   items: InvoiceItem[];
-  total: string;
+  total: number;
   paid: boolean;
   dueDate: number;
   dateSent: number;

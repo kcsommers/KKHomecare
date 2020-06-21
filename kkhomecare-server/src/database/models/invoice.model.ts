@@ -7,7 +7,6 @@ const invoiceSchema = new mongoose.Schema({
     email: String,
     phone: Number
   },
-  total: String,
   items: [
     {
       name: String,
@@ -17,10 +16,11 @@ const invoiceSchema = new mongoose.Schema({
       description: String
     }
   ],
+  total: Number,
   paid: Boolean,
-  dueDate: Date,
-  dateSent: Date,
-  datePaid: Date
+  dueDate: Number,
+  dateSent: Number,
+  datePaid: Number
 });
 
 export const InvoiceModel = mongoose.model<Invoice>('Invoice', invoiceSchema);
