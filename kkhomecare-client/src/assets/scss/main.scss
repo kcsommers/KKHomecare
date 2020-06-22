@@ -124,3 +124,9 @@ ul {
 *.kk-pointer {
     cursor: pointer;
 }
+fa-icon.success-icon {
+    color: $green;
+}
+fa-icon.error-icon {
+    color: $red;
+}

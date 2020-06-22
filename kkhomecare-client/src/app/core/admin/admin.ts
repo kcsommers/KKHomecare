@@ -1,5 +1,5 @@
 export interface ClientModel {
-  username: string;
+  name: string;
   email: string;
   phone: string;
   _id?: string;
@@ -26,4 +26,11 @@ export interface InvoiceModel {
 export interface InvoicesResponse {
   error: Error;
   invoices: InvoiceModel[];
+}
+
+export enum InvoiceFilters {
+  NONE = 'none',
+  PAID = 'paid',
+  UNPAID = 'unpaid',
+  PAST_DUE = 'past-due'
 }

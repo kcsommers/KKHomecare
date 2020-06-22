@@ -1,1 +1,183 @@
-<p>invoice-page works!</p>
+<div
+    *ngIf="loading$ | async"
+    class="loading-wrap"
+>
+    <kk-loading-spinner></kk-loading-spinner>
+</div>
+<ng-container *ngIf="!(loading$ | async)">
+    <h2 *ngIf="invoiceModel._id === '0'">New Invoice</h2>
+    <h2 *ngIf="invoiceModel._id !== '0'">
+        Invoice Sent on {{invoiceModel.dateSent}}
+    </h2>
+    <h5
+        *ngIf="invoiceModel.paid"
+        class="paid-on-title"
+    >
+        Paid on {{invoiceModel.datePaid}}
+    </h5>
+    <div class="invoice-form-wrap">
+        <span
+            *ngIf="invoiceErrors.clientName$ | async"
+            class="required-text"
+        >
+            *Required
+        </span>
+        <input
+            type="text"
+            placeholder="Client Name"
+            [(ngModel)]="invoiceModel.client.name"
+        >
+        <span
+            *ngIf="invoiceErrors.clientEmail$ | async"
+            class="required-text"
+        >
+            *Required
+        </span>
+        <input
+            type="email"
+            placeholder="Client Email"
+            [(ngModel)]="invoiceModel.client.email"
+        >
+        <span
+            *ngIf="invoiceErrors.clientPhone$ | async"
+            class="required-text"
+        >
+            *Required
+        </span>
+        <input
+            type="phone"
+            placeholder="Client Phone"
+            [(ngModel)]="invoiceModel.client.phone"
+        >
+        <ng-container *ngIf="invoiceModel.items.length">
+            <h5>Items:</h5>
+            <div class="items-wrap">
+                <div
+                    *ngFor="let item of invoiceModel.items"
+                    class="item-wrap"
+                >
+                    <div class="item-name-wrap">
+                        <span class="item-name">
+                            {{item.name}}
+                            <span class="item-actions-wrap">
+                                <fa-icon
+                                    class="edit-icon"
+                                    [icon]="'edit'"
+                                    (click)="openItemModal(item)"
+                                ></fa-icon>
+                                <fa-icon
+                                    class="trash-icon"
+                                    [icon]="'trash'"
+                                    (click)="deleteItem(item)"
+                                ></fa-icon>
+                            </span>
+                        </span>
+                        <strong class="item-total">{{item.totalString}}</strong>
+                    </div>
+                    <em class="item-description">{{item.description}}</em>
+                </div>
+            </div>
+        </ng-container>
+        <div
+            class="add-item-wrap"
+            (click)="openItemModal()"
+        >
+            <span>
+                Add Item
+                <fa-icon [icon]="'plus'"></fa-icon>
+            </span>
+        </div>
+        <div class="invoice-flex-wrap">
+            <h5>Total:</h5>
+            <span>{{invoiceTotal}}</span>
+        </div>
+        <div class="invoice-flex-wrap">
+            <h5>Due Date:</h5>
+            <mat-datepicker #Datepicker></mat-datepicker>
+            <div class="date-picker-wrap">
+                <input
+                    matInput
+                    readonly
+                    type="text"
+                    id="due-date-input"
+                    [matDatepicker]="Datepicker"
+                    [(ngModel)]="invoiceModel.dueDate"
+                >
+                <mat-datepicker-toggle [for]="Datepicker"></mat-datepicker-toggle>
+            </div>
+        </div>
+    </div>
+    <div
+        *ngIf="(saving$ | async) || (saveSuccess$ | async) || (saveError$ | async)"
+        class="saving-wrap"
+    >
+        <div
+            *ngIf="saving$ | async"
+            class="saving-spinner-wrap"
+        >
+            <kk-loading-spinner *ngIf="saving$ | async"></kk-loading-spinner>
+        </div>
+        <h4
+            *ngIf="saveSuccess$ | async"
+            class="slide-in-right"
+        >
+            <fa-icon
+                class="success-icon"
+                [icon]="'check-circle'"
+            ></fa-icon>
+            Invoice Sent!
+        </h4>
+        <h4
+            *ngIf="saveError$ | async"
+            class="slide-in-right"
+        >
+            <fa-icon
+                class="error-icon"
+                [icon]="'exclamation-circle'"
+            ></fa-icon>
+            Hmm. Something went wrong
+        </h4>
+    </div>
+
+    <div class="actions-wrap">
+        <button
+            *ngIf="invoiceModel._id === '0'"
+            (click)="createAndSendInvoice()"
+        >
+            Save and Send Invoice
+            <fa-icon [icon]="'paper-plane'"></fa-icon>
+        </button>
+        <ng-container *ngIf="invoiceModel._id !== '0'">
+            <button>Update Invoice</button>
+            <button>Send Reminder</button>
+            <button>
+                {{invoiceModel.paid ? 'Mark Not Paid' : 'Mark Paid'}}
+                <fa-icon [icon]="'dollar-sign'"></fa-icon>
+            </button>
+        </ng-container>
+    </div>
+</ng-container>
+
+<kk-modal>
+    <div
+        *kkModalTemplate
+        class="invoice-item-wrap slide-in-up"
+    >
+        <h3>Invoice Item</h3>
+        <input
+            type="text"
+            placeholder="Item Name"
+            [(ngModel)]="currentItem.name"
+        >
+        <textarea
+            placeholder="Item Description..."
+            [(ngModel)]="currentItem.description"
+        ></textarea>
+        <input
+            type="text"
+            placeholder="Item Total"
+            [(ngModel)]="currentItem.total"
+        >
+        <button (click)="addItem()">Add Item</button>
+    </div>
+</kk-modal>

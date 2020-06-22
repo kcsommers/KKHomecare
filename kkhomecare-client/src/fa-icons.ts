@@ -23,7 +23,8 @@ import {
   faReply,
   faEyeSlash,
   faTimes,
-  faPlus
+  faPlus,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -67,7 +68,8 @@ export class FaIconsComponent {
       faReply,
       faEyeSlash,
       faTimes,
-      faPlus
+      faPlus,
+      faPaperPlane
     );
   }
 }

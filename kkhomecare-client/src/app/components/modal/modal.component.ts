@@ -1,7 +1,15 @@
-import { Component, ChangeDetectionStrategy, HostBinding, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ViewContainerRef, TemplateRef, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostBinding, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ViewContainerRef, TemplateRef, AfterViewInit, Directive, ContentChild } from '@angular/core';
 import { ModalService, ModalTemplates } from '@kk/core';
 import { takeUntil, filter } from 'rxjs/operators';
 import { Subject, fromEvent } from 'rxjs';
+
+@Directive({
+  selector: '[kkModalTemplate]'
+})
+export class ModalTemplateDirective {
+  constructor(public template: TemplateRef<any>) {
+  }
+}
 
 @Component({
   selector: 'kk-modal',
@@ -9,7 +17,7 @@ import { Subject, fromEvent } from 'rxjs';
   styleUrls: ['./modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ModalComponent implements OnInit, OnDestroy {
 
   public isOpen = false;
 
@@ -19,13 +27,11 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private _close$ = new Subject();
 
-  private _templateMap = new Map<ModalTemplates, TemplateRef<any>>();
-
   @ViewChild('ViewContainer', { static: false, read: ViewContainerRef })
   private _viewContainer: ViewContainerRef;
 
-  @ViewChild('ContactTemplate', { static: false, read: TemplateRef })
-  private _contactTemplate: TemplateRef<any>;
+  @ContentChild(ModalTemplateDirective, { static: false })
+  private _modalTemplate: ModalTemplateDirective;
 
   @HostBinding('class.visible')
   get visibleClass(): boolean {
@@ -40,17 +46,13 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this._modalService.open$
       .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((event: { isOpen: boolean, template: ModalTemplates }) => {
-        if (event.isOpen) {
-          this.open(event.template);
+      .subscribe((isOpen: boolean) => {
+        if (isOpen) {
+          this.open();
         } else {
           this.close();
         }
       });
-  }
-
-  ngAfterViewInit() {
-    this._templateMap.set(ModalTemplates.CONTACT, this._contactTemplate);
   }
 
   ngOnDestroy() {
@@ -58,11 +60,10 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
     this._unsubscribe$.complete();
   }
 
-  public open(template: ModalTemplates): void {
-    const templateRef = this._templateMap.get(template);
-    if (templateRef) {
+  public open(): void {
+    if (this._modalTemplate) {
       document.querySelector('body').style.overflow = 'hidden';
-      this._viewContainer.createEmbeddedView(templateRef);
+      this._viewContainer.createEmbeddedView(this._modalTemplate.template);
       this.isVisible = true;
       this.isOpen = true;
       this._cd.markForCheck();

@@ -12,13 +12,27 @@ export class AdminService {
   constructor(private _http: HttpClient) {
   }
 
-  public getInvoices(lastId: string): Observable<InvoicesResponse> {
-    const query = lastId ? `?lastId=${lastId}` : '';
+  public getInvoiceById(id: string): Observable<InvoicesResponse> {
+    return this._http.get<InvoicesResponse>(`${environment.apiUrl}/invoices/${id}`);
+  }
+
+  public getInvoices(lastId: string, filter: string): Observable<InvoicesResponse> {
+    let query = '';
+    if (lastId) {
+      query += `?lastId=${lastId}`;
+    }
+    if (filter) {
+      query += `${query ? '&' : '?'}filter=${filter}`
+    }
     return this._http.get<InvoicesResponse>(`${environment.apiUrl}/invoices${query}`);
   }
 
-  public getInvoicesByClient(name: string): Observable<InvoicesResponse> {
-    return this._http.get<InvoicesResponse>(`${environment.apiUrl}/invoices/search?q=${name}`);
+  public getInvoicesByClient(name: string, filter: string): Observable<InvoicesResponse> {
+    let query = `?q=${name}`;
+    if (filter) {
+      query += `&filter=${filter}`
+    }
+    return this._http.get<InvoicesResponse>(`${environment.apiUrl}/invoices/search${query}`);
   }
 
   public getPastDueInvoices(): Observable<InvoicesResponse> {

@@ -7,13 +7,13 @@ import { ModalTemplates } from './modal';
 })
 export class ModalService {
 
-  public open$ = new BehaviorSubject({ isOpen: false, template: null });
+  public open$ = new BehaviorSubject(false);
 
-  public open(template: ModalTemplates): void {
-    this.open$.next({ isOpen: true, template });
+  public open(): void {
+    this.open$.next(true);
   }
 
   public close(): void {
-    this.open$.next({ isOpen: false, template: false });
+    this.open$.next(false);
   }
 }

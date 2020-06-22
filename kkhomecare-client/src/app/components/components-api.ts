@@ -1,4 +1,5 @@
 export { ModalComponent } from './modal/modal.component';
+export { ModalTemplateDirective } from './modal/modal.component';
 export { ModalModule } from './modal/modal.module';
 
 export { ImageComponent } from './image/image.component';

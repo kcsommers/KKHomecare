@@ -7,10 +7,13 @@
             (input)="searchInputChanged($event)"
         >
     </span>
-    <button>
+    <a
+        class="kk-btn"
+        [routerLink]="'0'"
+    >
         New Invoice
         <fa-icon [icon]="'plus'"></fa-icon>
-    </button>
+    </a>
 </header>
 <div class="filter-select-wrap">
     <mat-form-field>

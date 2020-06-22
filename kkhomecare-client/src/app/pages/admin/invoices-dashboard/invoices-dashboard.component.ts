@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { InvoiceModel, AdminService, InvoicesResponse } from '@kk/core';
+import { InvoiceModel, AdminService, InvoicesResponse, InvoiceFilters } from '@kk/core';
 import { take, takeUntil, distinctUntilChanged, debounceTime, filter, switchMap, skip } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router, Params, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -23,10 +23,10 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   public currentFilter = 'none';
 
   public filters = [
-    { value: 'none', viewValue: 'None' },
-    { value: 'past-due', viewValue: 'Past Due' },
-    { value: 'paid', viewValue: 'Paid' },
-    { value: 'not-sent', viewValue: 'Not Sent' }
+    { value: InvoiceFilters.NONE, viewValue: 'None' },
+    { value: InvoiceFilters.PAST_DUE, viewValue: 'Past Due' },
+    { value: InvoiceFilters.PAID, viewValue: 'Paid' },
+    { value: InvoiceFilters.UNPAID, viewValue: 'Unpaid' }
   ];
 
   private _debounce$ = new Subject<string>();
@@ -42,34 +42,7 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _route: ActivatedRoute
   ) {
-    this._router.events
-      .pipe(
-        filter(ev => ev instanceof NavigationEnd),
-        switchMap(_ => this._route.queryParams),
-        takeUntil(this._unsubscribe$)
-      )
-      .subscribe(
-        queryParams => {
-          console.log('why is this happenning twice')
-          if (queryParams) {
-            console.log('Params:::: ', queryParams)
-            if (queryParams.filter) {
-              this.currentFilter = queryParams.filter;
-            }
-            if (queryParams.q) {
-              this._searchBar.nativeElement.value = queryParams.q;
-              this.searchInvoices(queryParams.q);
-            } else {
-              console.log('Query q else')
-              this.loadInvoices();
-            }
-            this._cd.markForCheck();
-          } else {
-            console.log('Query else')
-            this.loadInvoices();
-          }
-        }
-      )
+
   }
 
   ngOnInit() {
@@ -80,9 +53,30 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe((name: string) => {
-        console.log('calling it')
         this.updateParams({ q: name });
       });
+
+    this._route.queryParams
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe(
+        (queryParams: Params) => {
+          if (queryParams) {
+            console.log('QP:::: ', queryParams)
+            if (queryParams.filter) {
+              this.currentFilter = queryParams.filter;
+            }
+            if (queryParams.q) {
+              this._searchBar.nativeElement.value = queryParams.q;
+              this.searchInvoices(queryParams.q);
+            } else {
+              this.loadInvoices();
+            }
+            this._cd.markForCheck();
+          } else {
+            this.loadInvoices();
+          }
+        }
+      );
   }
 
   ngOnDestroy() {
@@ -91,13 +85,12 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   }
 
   public filterChanged(filter: string): void {
-    this._lastId = '';
+    this.reset();
     this.currentFilter = filter;
-    // this.updateParams({ filter: this.currentFilter });
+    this.updateParams({ filter: this.currentFilter });
   }
 
   private updateParams(params: Params) {
-    console.log('update params')
     this._router.navigate(
       [],
       {
@@ -109,14 +102,12 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   }
 
   public loadInvoices(): void {
-    console.log('Load in:::: ', name)
     this.fetchError$.next('');
     this.loading$.next(true);
-    this._adminService.getInvoices(this._lastId)
+    this._adminService.getInvoices(this._lastId, this.currentFilter)
       .pipe(take(1))
       .subscribe(
         (res: InvoicesResponse) => {
-          console.log('Ressss:::: ', res)
           this.loading$.next(false);
           if (res.error) {
             console.error(res.error);
@@ -140,14 +131,13 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   }
 
   public searchInputChanged(event: InputEvent): void {
-    console.log('SEARCHH:::: ', event.target['value'])
     this._debounce$.next(event.target['value']);
   }
 
   public searchInvoices(name: string): void {
-    console.log('Search in:::: ', name)
+    console.log('Serarch invoices')
     this.reset();
-    this._adminService.getInvoicesByClient(name)
+    this._adminService.getInvoicesByClient(name, this.currentFilter)
       .pipe(take(1))
       .subscribe(this.handleResponse.bind(this), this.handleError.bind(this));
   }
@@ -173,7 +163,6 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   }
 
   private handleResponse(res: InvoicesResponse): void {
-    console.log('Handle Ressss:::: ', res)
     this.loading$.next(false);
     if (res.error) {
       console.error(res.error);
