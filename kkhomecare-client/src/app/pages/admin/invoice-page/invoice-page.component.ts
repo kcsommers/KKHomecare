@@ -1,22 +1,22 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AdminService, InvoicesResponse, InvoiceModel, ClientModel, InvoiceItem, ModalService, ModalTemplates } from '@kk/core';
+import { AdminService, InvoicesResponse, InvoiceModel, ClientModel, InvoiceItem, ModalService } from '@kk/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 
 class Invoice implements InvoiceModel {
-  client: ClientModel = {
+  public client: ClientModel = {
     name: '',
     email: '',
     phone: ''
   };
-  items: InvoiceItem[] = [];
-  total: number;
-  paid: boolean;
-  dueDate: number;
-  dateSent: number;
-  datePaid: number;
-  _id = '0';
+  public items: InvoiceItem[] = [];
+  public total: number;
+  public paid: boolean;
+  public dueDate: number;
+  public dateSent: number;
+  public datePaid: number;
+  public _id = '0';
 
   public setInvoice(invoice: InvoiceModel): void {
     this.client = invoice.client;
@@ -31,10 +31,10 @@ class Invoice implements InvoiceModel {
 }
 
 class Item implements InvoiceItem {
-  name: string;
-  total: number;
-  itemId = Math.floor(Math.random() * 1000000);
-  description: string;
+  public name: string;
+  public total: number;
+  public itemId = Math.floor(Math.random() * 1000000);
+  public description: string;
 
   public setItem(item: InvoiceItem): void {
     this.name = item.name;
@@ -73,13 +73,13 @@ export class InvoicePageComponent implements OnInit, OnDestroy {
   public itemErrors = {
     itemName$: new BehaviorSubject(false),
     itemTotal$: new BehaviorSubject(false),
-  }
+  };
 
   public invoiceErrors = {
     clientName$: new BehaviorSubject(false),
     clientEmail$: new BehaviorSubject(false),
     clientPhone$: new BehaviorSubject(false),
-  }
+  };
 
   constructor(
     private _route: ActivatedRoute,
@@ -127,7 +127,7 @@ export class InvoicePageComponent implements OnInit, OnDestroy {
           this.loading$.next(false);
           this.fetchError$.next(true);
         }
-      )
+      );
   }
 
   public openItemModal(item?: InvoiceItem): void {
@@ -191,7 +191,7 @@ export class InvoicePageComponent implements OnInit, OnDestroy {
             this.saveSuccess$.next(false);
             console.error(err);
           }
-        )
+        );
     }
   }
 

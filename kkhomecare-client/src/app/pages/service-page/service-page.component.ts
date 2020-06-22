@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { services, Service, ModalService, ModalTemplates } from '@kk/core';
+import { services, Service, ModalService } from '@kk/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -44,7 +44,7 @@ export class ServicePageComponent implements OnInit, OnDestroy {
   }
 
   public openModal(): void {
-    this._modalService.open(ModalTemplates.CONTACT);
+    this._modalService.open();
   }
 
 }
