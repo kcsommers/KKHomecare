@@ -111,7 +111,7 @@
             <h4>Images Uploaded Successfully!</h4>
         </div>
 
-        <ng-container *ngIf="!(beforeAfterUploading$ | async) && !(beforeAfterUploadSuccess$ | async) && !(beforeAfterUploadError | async)">
+        <ng-container *ngIf="!(beforeAfterUploading$ | async) && !(beforeAfterUploadSuccess$ | async) && !(beforeAfterUploadError$ | async)">
             <ng-container *ngIf="beforeFileName">
                 <p>Before Image:</p>
                 <h5>{{beforeFileName}}</h5>
