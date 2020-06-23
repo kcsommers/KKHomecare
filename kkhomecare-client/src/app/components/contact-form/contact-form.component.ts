@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, ViewChild, ElementRef } from '@angular/core';
 import { ContactService } from '@kk/core';
 import { take } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { take } from 'rxjs/operators';
 export class ContactFormComponent {
 
   @Input()
-  public title = 'Send Us a Message!'
+  public title = 'Send Us a Message!';
 
   public guid = Math.floor(Math.random() * 1000000);
 
@@ -35,6 +35,9 @@ export class ContactFormComponent {
 
   public submitError = false;
 
+  @ViewChild('PhoneInput', { static: false })
+  private _phoneInput: ElementRef<HTMLInputElement>;
+
   constructor(private _contactService: ContactService, private _cd: ChangeDetectorRef) { }
 
   private validate(): boolean {
@@ -56,7 +59,7 @@ export class ContactFormComponent {
       this._contactService.submitForm({
         name: this.name,
         email: this.email,
-        phone: this.phone,
+        phone: Number(this.phone.replace(/[^0-9]+/g, '')),
         message: this.message
       })
         .pipe(take(1))
@@ -75,6 +78,31 @@ export class ContactFormComponent {
       this.email = '';
       this.phone = '';
       this.message = '';
+    }
+  }
+
+  public validatePhone(event: Event): void {
+    let value = event.target['value'];
+    if (value !== this.phone) {
+      value = value.replace('(', '').replace(')', '').replace('-', '').replace(' ', '');
+      if (!value || (value.length <= 10 && /^[0-9]+$/g.test(value))) {
+        const p1 = value.substr(0, 3);
+        const p2 = value.substr(3, 3);
+        const p3 = value.substr(6, 4);
+        let p = '';
+        if (p1) {
+          p = p2 ? `(${p1})` : p1;
+        }
+        if (p2) {
+          p += ` ${p2}`;
+        }
+        if (p3) {
+          p += `-${p3}`;
+        }
+        this._phoneInput.nativeElement.value = this.phone = p;
+      } else {
+        this._phoneInput.nativeElement.value = this.phone;
+      }
     }
   }
 

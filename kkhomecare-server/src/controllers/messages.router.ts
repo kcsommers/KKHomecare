@@ -11,6 +11,7 @@ const mg = Mailgun({
 const router = Router();
 
 router.post('/', (req: Request, res: Response) => {
+
   const { name, email, message, phone } = req.body;
   const emailData: Mailgun.messages.SendData = {
     to: process.env.EMAIL_ADDRESS,
@@ -20,9 +21,9 @@ router.post('/', (req: Request, res: Response) => {
   };
   mg.messages().send(emailData, (err: Mailgun.Error, body: Mailgun.messages.SendResponse) => {
     if (err) {
-      return res.status(500).json({ success: false, error: err });
+      return res.status(500).json({ error: err });
     }
-    res.status(200).json({ success: true, error: null });
+    res.status(200).json({ error: null });
     // const replyData: Mailgun.messages.SendData = {
     //   to: email,
     //   from: `2K Homecare <${process.env.EMAIL_ADDRESS}>`,

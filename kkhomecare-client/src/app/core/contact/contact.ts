@@ -1,6 +1,6 @@
 export interface FormSubmission {
   name: string;
   email: string;
-  phone: string;
+  phone: number;
   message: string;
 }

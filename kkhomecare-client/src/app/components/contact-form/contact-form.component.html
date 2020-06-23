@@ -43,9 +43,11 @@
         </span>
     </label>
     <input
+        #PhoneInput
         id="phone_{{guid}}"
         type="phone"
-        [(ngModel)]="phone"
+        [value]="phone"
+        (input)="validatePhone($event)"
     >
     <label for="message_{{guid}}">
         Message

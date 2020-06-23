@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, HostBinding, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ViewContainerRef, TemplateRef, AfterViewInit, Directive, ContentChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostBinding, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ViewContainerRef, TemplateRef, Directive, ContentChild } from '@angular/core';
 import { ModalService } from '@kk/core';
 import { takeUntil, filter } from 'rxjs/operators';
 import { Subject, fromEvent } from 'rxjs';
