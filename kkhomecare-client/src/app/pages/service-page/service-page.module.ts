@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ServicePageRoutingModule } from './service-page-routing.module';
 import { ServicePageComponent } from './service-page.component';
-import { ServicesMenuModule, ModalModule } from '@kk/components';
+import { ServicesMenuModule, ModalModule, ContactFormModule } from '@kk/components';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { ServicesMenuModule, ModalModule } from '@kk/components';
     CommonModule,
     ServicePageRoutingModule,
     ServicesMenuModule,
-    ModalModule
+    ModalModule,
+    ContactFormModule
   ],
   exports: [ServicePageComponent]
 })

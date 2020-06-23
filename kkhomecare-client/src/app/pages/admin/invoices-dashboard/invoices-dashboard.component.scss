@@ -3,6 +3,18 @@
     display: block;
     padding: 2rem;
 }
+a.back-btn {
+    color: $blue;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+    margin-bottom: 1rem;
+    >fa-icon {
+        color: inherit;
+    }
+    &:hover {
+        opacity: 1;
+    }
+}
 header {
     display: flex;
     align-items: center;

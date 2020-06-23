@@ -7,7 +7,12 @@
         <span class="admin-card-icon-wrap">
             <fa-icon [icon]="'dollar-sign'"></fa-icon>
         </span>
-        <p class="admin-card-text">4 Unpaid</p>
+        <p
+            *ngIf="unpaidTotal"
+            class="admin-card-text"
+        >
+            {{unpaidTotal}} Unpaid
+        </p>
     </a>
 </div>
 <div class="kk-card">

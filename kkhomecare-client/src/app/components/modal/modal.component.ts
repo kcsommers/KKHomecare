@@ -30,6 +30,9 @@ export class ModalComponent implements OnInit, OnDestroy {
   @ViewChild('ViewContainer', { static: false, read: ViewContainerRef })
   private _viewContainer: ViewContainerRef;
 
+  @ViewChild('ConfirmTemplate', { static: false, read: TemplateRef })
+  private _confirmTemplate: TemplateRef<any>;
+
   @ContentChild(ModalTemplateDirective, { static: false })
   private _modalTemplate: ModalTemplateDirective;
 
@@ -49,6 +52,16 @@ export class ModalComponent implements OnInit, OnDestroy {
       .subscribe((isOpen: boolean) => {
         if (isOpen) {
           this.open();
+        } else {
+          this.close();
+        }
+      });
+
+    this._modalService.confirm$
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((isOpen: boolean) => {
+        if (isOpen) {
+          this.openConfirm();
         } else {
           this.close();
         }
@@ -93,4 +106,18 @@ export class ModalComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
+  public cancel(): void {
+    this._modalService.closeConfirm();
+  }
+
+  public openConfirm(): void {
+    this._viewContainer.createEmbeddedView(this._confirmTemplate);
+    this.isVisible = true;
+    this.isOpen = true;
+    this._cd.markForCheck();
+  }
+
+  public confirm(): void {
+    this._modalService.confirmed();
+  }
 }

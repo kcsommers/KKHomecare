@@ -19,7 +19,6 @@ export { ContactService } from './contact/contact.service';
 
 export { testimonials } from './kk-services/kk-services';
 
-export * from './modal/modal';
 export { ModalService } from './modal/modal.service';
 
 export * from './http/api';

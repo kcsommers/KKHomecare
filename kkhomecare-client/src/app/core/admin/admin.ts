@@ -1,7 +1,7 @@
 export interface ClientModel {
   name: string;
   email: string;
-  phone: string;
+  phone: number;
   _id?: string;
 }
 

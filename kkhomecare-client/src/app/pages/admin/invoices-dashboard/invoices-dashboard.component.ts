@@ -130,7 +130,7 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
       );
   }
 
-  public searchInputChanged(event: InputEvent): void {
+  public searchInputChanged(event: Event): void {
     this._debounce$.next(event.target['value']);
   }
 
@@ -186,7 +186,7 @@ export class InvoicesDashboardComponent implements OnInit, OnDestroy {
   }
 
   public isPastDue(dueDate: number): boolean {
-    return dueDate > Date.now();
+    return dueDate < Date.now();
   }
 
 }

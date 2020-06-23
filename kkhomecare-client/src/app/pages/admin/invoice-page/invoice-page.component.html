@@ -1,3 +1,10 @@
+<a
+    class="back-btn"
+    [routerLink]="'/admin/invoices'"
+>
+    <fa-icon [icon]="'arrow-left'"></fa-icon>
+    Back to Invoices
+</a>
 <div
     *ngIf="loading$ | async"
     class="loading-wrap"
@@ -45,15 +52,17 @@
             *Required
         </span>
         <input
+            #ClientPhoneInput
             type="phone"
             placeholder="Client Phone"
-            [(ngModel)]="invoiceModel.client.phone"
+            [value]="invoiceModel.client.phone"
+            (input)="validateClientPhone($event)"
         >
         <ng-container *ngIf="invoiceModel.items.length">
             <h5>Items:</h5>
             <div class="items-wrap">
                 <div
-                    *ngFor="let item of invoiceModel.items"
+                    *ngFor="let item of invoiceItems"
                     class="item-wrap"
                 >
                     <div class="item-name-wrap">
@@ -72,7 +81,7 @@
                                 ></fa-icon>
                             </span>
                         </span>
-                        <strong class="item-total">{{item.totalString}}</strong>
+                        <strong class="item-total">{{item.total}}</strong>
                     </div>
                     <em class="item-description">{{item.description}}</em>
                 </div>
@@ -89,14 +98,13 @@
         </div>
         <div class="invoice-flex-wrap">
             <h5>Total:</h5>
-            <span>{{invoiceTotal}}</span>
+            <span>{{invoiceModel.total}}</span>
         </div>
         <div class="invoice-flex-wrap">
             <h5>Due Date:</h5>
             <mat-datepicker #Datepicker></mat-datepicker>
             <div class="date-picker-wrap">
                 <input
-                    matInput
                     readonly
                     type="text"
                     id="due-date-input"
@@ -125,7 +133,7 @@
                 class="success-icon"
                 [icon]="'check-circle'"
             ></fa-icon>
-            Invoice Sent!
+            Success!
         </h4>
         <h4
             *ngIf="saveError$ | async"
@@ -148,11 +156,18 @@
             <fa-icon [icon]="'paper-plane'"></fa-icon>
         </button>
         <ng-container *ngIf="invoiceModel._id !== '0'">
-            <button>Update Invoice</button>
-            <button>Send Reminder</button>
-            <button>
+            <button (click)="updateInvoice(invoiceModel.createInvoice())">Update Invoice</button>
+            <button (click)="sendReminder()">Send Reminder</button>
+            <button (click)="togglePaid()">
                 {{invoiceModel.paid ? 'Mark Not Paid' : 'Mark Paid'}}
                 <fa-icon [icon]="'dollar-sign'"></fa-icon>
+            </button>
+            <button
+                class="kk-btn kk-btn-danger"
+                (click)="deleteInvoice()"
+            >
+                Delete Invoice
+                <fa-icon [icon]="'trash'"></fa-icon>
             </button>
         </ng-container>
     </div>
@@ -161,7 +176,7 @@
 <kk-modal>
     <div
         *kkModalTemplate
-        class="invoice-item-wrap slide-in-up"
+        class="modal-content-wrap invoice-item-wrap slide-in-up"
     >
         <h3>Invoice Item</h3>
         <input
@@ -173,11 +188,17 @@
             placeholder="Item Description..."
             [(ngModel)]="currentItem.description"
         ></textarea>
-        <input
-            type="text"
-            placeholder="Item Total"
-            [(ngModel)]="currentItem.total"
-        >
+        <div class="item-total-wrap">
+            <label for="item-total">$</label>
+            <input
+                #ItemTotalInput
+                id="item-total"
+                type="text"
+                placeholder="Item Total"
+                [value]="currentItem.total || ''"
+                (input)="validateItemTotal($event)"
+            >
+        </div>
         <button (click)="addItem()">Add Item</button>
     </div>
 </kk-modal>

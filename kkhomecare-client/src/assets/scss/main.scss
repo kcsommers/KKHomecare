@@ -130,3 +130,12 @@ fa-icon.success-icon {
 fa-icon.error-icon {
     color: $red;
 }
+div.modal-content-wrap {
+    background-color: $light;
+    border-radius: 3px;
+    padding: 2rem;
+    overflow: auto;
+    height: 80vh;
+    width: 65%;
+    margin: 0 auto;
+}

@@ -1,2 +1,15 @@
 <ng-container #ViewContainer></ng-container>
 <ng-content></ng-content>
+<ng-template #ConfirmTemplate>
+    <div class="modal-content-wrap confirm-wrap slide-in-up">
+        <h2>Are You Sure?</h2>
+        <p>This action cannot be undone</p>
+        <button
+            class="kk-btn kk-btn-danger"
+            (click)="confirm()"
+        >
+            Confirm
+        </button>
+        <button (click)="cancel()">Cancel</button>
+    </div>
+</ng-template>

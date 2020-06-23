@@ -44,7 +44,23 @@ export class AdminService {
   }
 
   public createInvoice(invoice: InvoiceModel): Observable<InvoicesResponse> {
-    return this._http.post<InvoicesResponse>(`${environment.apiUrl}/invoices/create`, { invoice });
+    return this._http.post<InvoicesResponse>(`${environment.apiUrl}/invoices`, { invoice });
+  }
+
+  public updateInvoice(invoiceId: string, data: { [prop: string]: any }): Observable<InvoicesResponse> {
+    return this._http.put<InvoicesResponse>(`${environment.apiUrl}/invoices/${invoiceId}`, data);
+  }
+
+  public deleteInvoice(invoice: InvoiceModel): Observable<InvoicesResponse> {
+    return this._http.delete<InvoicesResponse>(`${environment.apiUrl}/invoices/${invoice._id}`);
+  }
+
+  public sendReminder(invoiceId: string): Observable<InvoicesResponse> {
+    return this._http.post<InvoicesResponse>(`${environment.apiUrl}/invoices/reminder`, { invoiceId });
+  }
+
+  public getUnpaidInvoiceTotal(): Observable<{ error: Error, total: number }> {
+    return this._http.get<{ error: Error, total: number }>(`${environment.apiUrl}/invoices/unpaid`);
   }
 
 }

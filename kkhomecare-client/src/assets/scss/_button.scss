@@ -70,6 +70,16 @@ a.kk-btn-light {
     color: #fff;
 }
 
+button.kk-btn-danger,
+a.kk-btn-danger {
+    background-color: $red;
+    color: #fff;
+    &:hover,
+    &:focus {
+        background: lighten($red, 5%);
+    }
+}
+
 button.kk-btn-full-width,
 a.kk-btn-full-width {
     width: 100%

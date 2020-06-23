@@ -1,9 +1,21 @@
 @import '_variables';
 :host {
     display: block;
-    padding: 4rem 2rem;
+    padding: 2rem;
     >h2 {
         margin-bottom: 1rem;
+    }
+}
+a.back-btn {
+    color: $blue;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+    margin-bottom: 1rem;
+    >fa-icon {
+        color: inherit;
+    }
+    &:hover {
+        opacity: 1;
     }
 }
 h2.before-after-title {

@@ -24,7 +24,9 @@ import {
   faEyeSlash,
   faTimes,
   faPlus,
-  faPaperPlane
+  faPaperPlane,
+  faBackward,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -69,7 +71,8 @@ export class FaIconsComponent {
       faEyeSlash,
       faTimes,
       faPlus,
-      faPaperPlane
+      faPaperPlane,
+      faArrowLeft
     );
   }
 }
