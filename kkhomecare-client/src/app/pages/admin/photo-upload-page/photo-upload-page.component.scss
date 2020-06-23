@@ -25,8 +25,8 @@ div.file-input-wrap {
     border: 3px dotted $dark;
     position: relative;
     width: 50%;
-    min-width: 500px;
     height: 300px;
+    min-width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,4 +83,16 @@ div.error-msg-wrap>fa-icon {
 }
 div.success-msg-wrap>fa-icon {
     color: $blue;
+}
+@media only screen and (max-width: 767px) {
+    div.image-uploader-wrap {
+        flex-direction: column;
+    }
+    div.file-list-wrap {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+    div.ba-file-list-wrap {
+        margin-bottom: 2rem;
+    }
 }

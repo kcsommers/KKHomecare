@@ -34,3 +34,14 @@ a.services-nav-tag {
         color: $light;
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    :host {
+        width: 300px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    :host {
+        width: auto;
+    }
+}

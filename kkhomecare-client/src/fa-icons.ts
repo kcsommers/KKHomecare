@@ -26,7 +26,8 @@ import {
   faPlus,
   faPaperPlane,
   faBackward,
-  faArrowLeft
+  faArrowLeft,
+  faBars
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
@@ -72,7 +73,8 @@ export class FaIconsComponent {
       faTimes,
       faPlus,
       faPaperPlane,
-      faArrowLeft
+      faArrowLeft,
+      faBars
     );
   }
 }

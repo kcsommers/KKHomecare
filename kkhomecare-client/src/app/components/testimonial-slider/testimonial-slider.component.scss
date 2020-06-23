@@ -59,3 +59,12 @@ span.dot {
         transform: scale(1.2);
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    div.testimonial-wrap {
+        padding: 0 2rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+}

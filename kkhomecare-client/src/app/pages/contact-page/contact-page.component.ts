@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'kk-contact-page',
@@ -13,5 +13,8 @@ export class ContactPageComponent implements OnInit {
   ngOnInit() {
     window.scrollTo({ top: 0 });
   }
+
+  @HostBinding('class.header-padding')
+  public paddingClass = true;
 
 }

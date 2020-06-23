@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, OnDestroy, HostBinding } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { services, Service, ModalService } from '@kk/core';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +20,9 @@ export class ServicePageComponent implements OnInit, OnDestroy {
 
   @ViewChild('Template', { static: true, read: TemplateRef })
   private _template: TemplateRef<any>;
+
+  @HostBinding('class.header-padding')
+  public paddingClass = true;
 
   constructor(private _route: ActivatedRoute, private _modalService: ModalService) { }
 

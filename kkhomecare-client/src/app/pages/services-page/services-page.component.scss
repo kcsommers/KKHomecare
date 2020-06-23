@@ -1,7 +1,9 @@
 @import 'variables';
 :host {
     display: block;
-    padding: 150px 2rem 4rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
 }
 section.services-intro-section {
     height: 450px;
@@ -46,5 +48,14 @@ div.service-img-wrap {
     >img {
         transition: transform 1s ease;
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    a.service-card {
+        flex-direction: column;
+    }
+    div.service-img-wrap {
+        margin-top: 2rem;
     }
 }

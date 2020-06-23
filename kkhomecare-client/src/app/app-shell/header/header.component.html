@@ -1,8 +1,18 @@
-<nav class="header-nav">
+<div
+    class="side-nav-clickout"
+    [class.open]="sideNavOpen"
+    [class.fade-in]="sideNavOpen"
+    (click)="sideNavOpen = false"
+></div>
+<nav
+    class="header-nav"
+    [class.open]="sideNavOpen"
+>
     <a
         class="nav-link"
         [class.nav-link-active]="currentUrl === '/'"
         [routerLink]="'/'"
+        (click)="sideNavOpen && sideNavOpen = false"
     >
         Home
     </a>
@@ -10,6 +20,7 @@
         class="nav-link"
         [class.nav-link-active]="currentUrl === '/about'"
         [routerLink]="'/about'"
+        (click)="sideNavOpen && sideNavOpen = false"
     >
         About
     </a>
@@ -17,6 +28,7 @@
         class="nav-link"
         [class.nav-link-active]="currentUrl === '/services'"
         [routerLink]="'/services'"
+        (click)="sideNavOpen && sideNavOpen = false"
     >
         Services
     </a>
@@ -24,6 +36,7 @@
         class="nav-link"
         [class.nav-link-active]="currentUrl === '/photos'"
         [routerLink]="'/photos'"
+        (click)="sideNavOpen && sideNavOpen = false"
     >
         Photos
     </a>
@@ -31,6 +44,7 @@
         class="nav-link"
         [class.nav-link-active]="currentUrl === '/contact'"
         [routerLink]="'/contact'"
+        (click)="sideNavOpen && sideNavOpen = false"
     >
         Contact
     </a>
@@ -47,12 +61,19 @@
         >
     </a>
     <div class="social-wrap slide-in-left">
-        <a href="/">
-            <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
-        </a>
-        <a href="/">
-            <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
-        </a>
+        <fa-icon
+            class="mobile-nav-trigger"
+            [icon]="'bars'"
+            (click)="sideNavOpen = true"
+        ></fa-icon>
+        <div class="social-wrap-inner">
+            <a href="/">
+                <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+            </a>
+            <a href="/">
+                <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+            </a>
+        </div>
     </div>
 </div>
 <div class="header-contact-wrap slide-in-down">
@@ -68,5 +89,12 @@
             Get A Quote
         </button>
     </div>
-
 </div>
+<kk-modal>
+    <div
+        *kkModalTemplate
+        class="modal-content-wrap slide-in-up"
+    >
+        <kk-contact-form></kk-contact-form>
+    </div>
+</kk-modal>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, ComponentFactoryResolver, ChangeDetectorRef, ViewRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewContainerRef, ViewChild, TemplateRef, ComponentFactoryResolver, ChangeDetectorRef, ViewRef, HostBinding } from '@angular/core';
 import { PhotosService, PhotosResponse, ImageModel, BeforeAfterModel, BeforeAfterResponse } from '@kk/core';
 import { take } from 'rxjs/operators';
 import { ImageComponent } from '@kk/components';
@@ -25,6 +25,9 @@ export class PhotosPageComponent implements OnInit {
 
   @ViewChild('PhotosContainer', { static: true, read: ViewContainerRef })
   private _photosContainer: ViewContainerRef;
+
+  @HostBinding('class.header-padding')
+  public paddingClass = true;
 
   constructor(
     private _photosService: PhotosService,

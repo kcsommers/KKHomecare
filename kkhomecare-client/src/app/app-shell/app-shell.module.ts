@@ -5,6 +5,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from '../components/modal/modal.module';
+import { ContactFormModule } from '../components/contact-form/contact-form.module';
 
 
 
@@ -17,7 +19,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ModalModule,
+    ContactFormModule
   ],
   exports: [
     AppShellComponent,

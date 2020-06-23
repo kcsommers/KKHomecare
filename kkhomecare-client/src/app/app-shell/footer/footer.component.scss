@@ -4,6 +4,7 @@
     height: 250px;
     background-color: #fff;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+    transition: all 0.2s ease;
     padding: 0 4rem;
     >h4 {
         margin-bottom: 0.5rem;
@@ -25,6 +26,7 @@ div.footer-right {
     align-self: center;
 }
 img.footer-logo {
+    transition: width 0.2s ease;
     width: 180px;
 }
 div.footer-contact-wrap {
@@ -48,6 +50,7 @@ div.footer-social-wrap {
         transition: color 0.2s ease;
         >fa-icon {
             color: inherit;
+            font-size: 2rem;
         }
         &:hover {
             color: $blue;
@@ -57,5 +60,60 @@ div.footer-social-wrap {
 a.footer-social-tag {
     &:not(:last-child) {
         margin-right: 0.75rem;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    :host {
+        padding: 0 2rem;
+        height: 200px
+    }
+    img.footer-logo {
+        width: 150px;
+    }
+    div.footer-left-inner {
+        margin-left: 1rem;
+    }
+    div.footer-contact-wrap {
+        >p {
+            font-size: 0.9rem;
+        }
+    }
+    div.footer-social-wrap {
+        >p {
+            font-size: 1.2rem;
+        }
+        >a {
+            >fa-icon {
+                color: inherit;
+                font-size: 1.75rem;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 830px) {
+    img.footer-logo {
+        display: none;
+    }
+    div.footer-left-inner {
+        margin-left: 0;
+    }
+    div.footer-social-wrap {
+        display: none;
+    }
+}
+@media only screen and (max-width: 560px) {
+    :host {
+        height: auto;
+        padding: 2rem;
+    }
+    div.footer-contact-wrap {
+        flex-direction: column;
+        >p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+    div.footer-social-wrap {
+        display: none;
     }
 }

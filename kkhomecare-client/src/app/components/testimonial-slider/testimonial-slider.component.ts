@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, EmbeddedViewRef, ViewContainerRef, TemplateRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, EmbeddedViewRef, ViewContainerRef, TemplateRef, Renderer2, HostListener } from '@angular/core';
 import { testimonials } from '@kk/core';
 import $clamp from 'clamp-js';
 
@@ -58,11 +58,15 @@ export class TestimonialSliderComponent implements OnInit {
         { t: testimonials[this.currentIndex] },
         insertIndex
       );
+      this.clamp();
       if (slideInClass) {
-        $clamp(this._currentView.rootNodes[0].children[0], { clamp: 3 });
         this._renderer.addClass(this._currentView.rootNodes[0], slideInClass);
       }
     }
+  }
+
+  public clamp(): void {
+    $clamp(this._currentView.rootNodes[0].children[0], { clamp: 3 });
   }
 
   private removeView() {
@@ -70,6 +74,11 @@ export class TestimonialSliderComponent implements OnInit {
       this._viewContainer.remove(0);
       this._animating = false;
     }, 1000);
+  }
+
+  @HostListener('window:resize')
+  public onResize(): void {
+    this.clamp();
   }
 
 }

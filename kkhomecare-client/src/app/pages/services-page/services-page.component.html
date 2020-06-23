@@ -13,7 +13,7 @@
             <div class="service-info-wrap">
                 <h4>{{service.name | titlecase}}</h4>
                 <p>{{service.cardText}}</p>
-                <button>Get a Quote</button>
+                <button (click)="openModal($event)">Get a Quote</button>
             </div>
             <div class="service-img-wrap">
                 <img

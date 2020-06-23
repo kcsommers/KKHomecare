@@ -19,6 +19,10 @@ export class HeaderComponent implements OnDestroy {
 
   public currentUrl = '';
 
+  public smScreen = false;
+
+  public sideNavOpen = false;
+
   constructor(private _router: Router, private _modalService: ModalService) {
     this.setCurrentUrl(this._router.url);
     this._router.events

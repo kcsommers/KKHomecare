@@ -2,7 +2,6 @@
 :host {
     display: block;
     background-color: #fff;
-    padding-top: 150px;
 }
 section.landing-section {
     padding: 2rem;
@@ -10,6 +9,7 @@ section.landing-section {
 h1.landing-title,
 p.landing-tagline {
     color: #fff;
+    transition: font-size 0.2s ease;
 }
 p.landing-tagline {
     letter-spacing: 0.1rem;
@@ -31,7 +31,7 @@ div.service-cards-wrap {
     display: grid;
     column-gap: 2rem;
     row-gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
     margin-bottom: 2rem;
 }
 a.service-card {
@@ -126,4 +126,56 @@ div.contact-right {
     padding: 4rem;
     flex: 1;
     background-color: $light;
+}
+
+@media only screen and (max-width: 1024px) {
+    p.landing-tagline {
+        font-size: 1.5rem
+    }
+    div.service-cards-wrap {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    div.what-we-do-wrap {
+        flex-direction: column;
+    }
+    div.services-menu-wrap {
+        transform: translateX(0);
+        margin-top: 1rem;
+    }
+    div.contact-left,
+    div.contact-right {
+        padding: 4rem 2rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    h1.landing-title {
+        font-size: 4rem;
+    }
+    p.landing-tagline {
+        font-size: 1.25rem
+    }
+    div.service-cards-wrap {
+        display: none;
+    }
+    section.testimonials-section {
+        padding: 4rem 2rem;
+    }
+    h2.testimonials-header {
+        margin-bottom: 0.5rem;
+    }
+    section.contact-section {
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 560px) {
+    div.landing-wrap {
+        padding: 4rem 2rem;
+    }
+    h1.landing-title {
+        font-size: 2.5rem;
+    }
+    p.landing-tagline {
+        font-size: 1rem
+    }
 }

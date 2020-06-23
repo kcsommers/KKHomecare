@@ -139,3 +139,12 @@ div.modal-content-wrap {
     width: 65%;
     margin: 0 auto;
 }
+*.header-padding {
+    padding-top: 150px;
+    transition: padding 0.2s ease;
+}
+@media only screen and (max-width: 767px) {
+    *.header-padding {
+        padding-top: 120px;
+    }
+}

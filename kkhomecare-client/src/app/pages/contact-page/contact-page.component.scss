@@ -1,7 +1,6 @@
 @import 'variables';
 :host {
     display: flex;
-    padding-top: 150px;
     min-height: 100%;
 }
 div.contact-page-left {
@@ -27,5 +26,10 @@ div.contact-info {
     }
     >p>strong.name {
         font-size: 1.3rem;
+    }
+}
+@media only screen and (max-width: 767px) {
+    :host {
+        flex-direction: column;
     }
 }
