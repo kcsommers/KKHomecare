@@ -43,7 +43,7 @@ class Invoice {
   }
 
   public updateDateSent(): void {
-    this.dateSent = moment(Date.now()).format('MMM DD, YYYY')
+    this.dateSent = moment(Date.now()).format('MMM DD, YYYY');
   }
 
   public addItem(item: InvoiceItem): void {
@@ -54,7 +54,6 @@ class Invoice {
   }
 
   public createInvoice(): InvoiceModel {
-    console.log('create:::: ', moment(this.dueDate).unix() * 1000)
     return {
       client: {
         name: this.client.name,
@@ -171,7 +170,7 @@ export class InvoicePageComponent implements OnDestroy {
       .pipe(take(1))
       .subscribe(
         (res: InvoicesResponse) => {
-          console.log('res:::: ', res.invoices[0])
+          console.log('res:::: ', res.invoices[0]);
           this.loading$.next(false);
           if (res.error || !res.invoices || !res.invoices.length) {
             console.error(res.error);
@@ -299,7 +298,7 @@ export class InvoicePageComponent implements OnDestroy {
         .pipe(take(1))
         .subscribe(
           (res: InvoicesResponse) => {
-            this._router.navigate(['/admin/invoices'])
+            this._router.navigate(['/admin/invoices']);
           },
           err => console.error(err)
         );
@@ -311,7 +310,7 @@ export class InvoicePageComponent implements OnDestroy {
     if (value !== this.currentItem.total) {
       const noDecVal = value.replace('.', '');
       if (/^[0-9]+$/g.test(noDecVal)) {
-        const valNum = +noDecVal
+        const valNum = +noDecVal;
         if (valNum === 0) {
           this.currentItem.total = this._itemTotalInput.nativeElement.value = '';
           return;

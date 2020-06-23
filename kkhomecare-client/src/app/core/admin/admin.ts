@@ -6,10 +6,10 @@ export interface ClientModel {
 }
 
 export interface InvoiceItem {
-  name: string,
-  total: number,
-  itemId: number,
-  description: string
+  name: string;
+  total: number;
+  itemId: number;
+  description: string;
 }
 
 export interface InvoiceModel {
