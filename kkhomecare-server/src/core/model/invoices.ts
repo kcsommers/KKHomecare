@@ -17,3 +17,10 @@ export interface Invoice extends Document {
   dateSent: number;
   datePaid: number;
 }
+
+export interface InvoiceQuery {
+  _id?: { $gt: string };
+  paid?: boolean;
+  dueDate?: { $lt: number };
+  'client.name'?: RegExp;
+}
