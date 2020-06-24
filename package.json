@@ -1,9 +1,0 @@
-{
-  "name": "kkhomecare",
-  "version": "0.0.0",
-  "scripts": {
-    "build-client": "cd kkhomecare-client && npm run build"
-  },
-  "private": true,
-  "dependencies": {}
-}
