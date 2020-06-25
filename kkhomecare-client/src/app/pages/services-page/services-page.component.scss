@@ -52,6 +52,11 @@ div.service-img-wrap {
 }
 
 @media only screen and (max-width: 767px) {
+    section.services-intro-section {
+        >p {
+            padding: 0 2rem;
+        }
+    }
     a.service-card {
         flex-direction: column;
     }
